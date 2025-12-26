@@ -1,0 +1,427 @@
+features:
+  # --- Core System ---
+  - id: MDAT_REPO_CONTRACT
+    title: "Repository Contract: MDAT structure, entrypoints, and runtime split (webview vs rust)"
+    governance: draft
+    implementation: planned
+    spec: "spec/system/repo-contract.md"
+    owner: bart
+    group: core
+    tests: []
+    depends_on: []
+
+  - id: MDAT_APP_BOOT
+    title: "App Boot: React root, Providers, i18n init, and top-level ErrorBoundary"
+    governance: draft
+    implementation: planned
+    spec: "spec/system/app-boot.md"
+    owner: bart
+    group: core
+    tests: []
+    depends_on:
+      - MDAT_REPO_CONTRACT
+
+  - id: MDAT_RUNTIME_MODE
+    title: "Runtime Mode: Tauri detection and conditional behavior (web vs Tauri)"
+    governance: draft
+    implementation: planned
+    spec: "spec/system/runtime-mode.md"
+    owner: bart
+    group: core
+    tests: []
+    depends_on:
+      - MDAT_APP_BOOT
+
+  # --- UI (shadcn/ui + Tailwind) ---
+  - id: UI_SHELL_CONTRACT
+    title: "UI Shell Contract: Header, Sidebar, Main, Aside, Footer layout primitives"
+    governance: draft
+    implementation: planned
+    spec: "spec/ui/shell-contract.md"
+    owner: bart
+    group: ui
+    tests: []
+    depends_on:
+      - MDAT_APP_BOOT
+
+  - id: UI_COMPONENTS_SHADCN
+    title: "UI Components: shadcn/ui base component set and styling conventions"
+    governance: draft
+    implementation: planned
+    spec: "spec/ui/shadcn-components.md"
+    owner: bart
+    group: ui
+    tests: []
+    depends_on:
+      - UI_SHELL_CONTRACT
+
+  - id: UI_THEME_CONTRACT
+    title: "Theme Contract: light/dark mode, persistence, and hotkey toggle"
+    governance: draft
+    implementation: planned
+    spec: "spec/ui/theme-contract.md"
+    owner: bart
+    group: ui
+    tests: []
+    depends_on:
+      - MDAT_APP_BOOT
+
+  - id: UI_THEME_SHADCN_IMPL
+    title: "Theme Implementation: Tailwind + CSS variables compatible with shadcn/ui"
+    governance: draft
+    implementation: planned
+    spec: "spec/ui/theme-shadcn.md"
+    owner: bart
+    group: ui
+    tests: []
+    depends_on:
+      - UI_THEME_CONTRACT
+      - UI_COMPONENTS_SHADCN
+
+  - id: UI_NAV_STATE
+    title: "UI State: Mobile nav disclosure + desktop nav persistence (cookie)"
+    governance: draft
+    implementation: planned
+    spec: "spec/ui/nav-state.md"
+    owner: bart
+    group: ui
+    tests: []
+    depends_on:
+      - UI_SHELL_CONTRACT
+
+  - id: UI_SCROLL_CONTAINER
+    title: "UI Scrolling: Main scroller container with ScrollToTop affordance"
+    governance: draft
+    implementation: planned
+    spec: "spec/ui/scroll-container.md"
+    owner: bart
+    group: ui
+    tests: []
+    depends_on:
+      - UI_SHELL_CONTRACT
+
+  - id: UI_LOADING_STATES
+    title: "Loading States: splashscreen and suspense fallback render rules"
+    governance: draft
+    implementation: planned
+    spec: "spec/ui/loading-states.md"
+    owner: bart
+    group: ui
+    tests: []
+    depends_on:
+      - UI_SHELL_CONTRACT
+
+  - id: UI_ERROR_BOUNDARY
+    title: "UI Resilience: ErrorBoundary fallback UI and reset behavior"
+    governance: draft
+    implementation: planned
+    spec: "spec/ui/error-boundary.md"
+    owner: bart
+    group: ui
+    tests: []
+    depends_on:
+      - UI_SHELL_CONTRACT
+
+  # --- Routing (React Router v7) ---
+  - id: ROUTING_RR7_CONTRACT
+    title: "Routing Contract: React Router v7 route tree, layouts, and navigation model"
+    governance: draft
+    implementation: planned
+    spec: "spec/routing/react-router-v7.md"
+    owner: bart
+    group: routing
+    tests: []
+    depends_on:
+      - MDAT_APP_BOOT
+      - UI_SHELL_CONTRACT
+
+  - id: ROUTING_VIEWS_REGISTRY
+    title: "Routing: Views registry drives sidebar items and route mapping"
+    governance: draft
+    implementation: planned
+    spec: "spec/routing/views-registry.md"
+    owner: bart
+    group: routing
+    tests: []
+    depends_on:
+      - ROUTING_RR7_CONTRACT
+      - UI_NAV_STATE
+
+  - id: ROUTING_LAZY_VIEWS
+    title: "Routing: Lazy-loaded views and suspense integration"
+    governance: draft
+    implementation: planned
+    spec: "spec/routing/lazy-views.md"
+    owner: bart
+    group: routing
+    tests: []
+    depends_on:
+      - ROUTING_VIEWS_REGISTRY
+      - UI_LOADING_STATES
+
+  # --- i18n / Localization ---
+  - id: MDAT_I18N_SETUP
+    title: "i18n: i18next + react-i18next + language detector with flat JSON keys"
+    governance: draft
+    implementation: planned
+    spec: "spec/i18n/setup.md"
+    owner: bart
+    group: i18n
+    tests: []
+    depends_on:
+      - MDAT_APP_BOOT
+
+  - id: MDAT_I18N_TYPES
+    title: "i18n: TypeScript typing via i18next.d.ts CustomTypeOptions"
+    governance: draft
+    implementation: planned
+    spec: "spec/i18n/types.md"
+    owner: bart
+    group: i18n
+    tests: []
+    depends_on:
+      - MDAT_I18N_SETUP
+
+  - id: MDAT_I18N_LANGUAGE_SWITCH
+    title: "i18n: Language header switcher and hotkey cycling languages"
+    governance: draft
+    implementation: planned
+    spec: "spec/i18n/language-switch.md"
+    owner: bart
+    group: i18n
+    tests: []
+    depends_on:
+      - MDAT_I18N_SETUP
+      - UI_SHELL_CONTRACT
+
+  - id: MDAT_I18N_RUST_TRAY_LANG
+    title: "i18n: Rust tray menu language update command (tray_update_lang)"
+    governance: draft
+    implementation: planned
+    spec: "spec/i18n/rust-tray-lang.md"
+    owner: bart
+    group: i18n
+    tests: []
+    depends_on:
+      - MDAT_TAURI_TRAY_MENU
+
+  # --- Persistence / Storage ---
+  - id: MDAT_PERSIST_LOCALFORAGE_HOOK
+    title: "Persistence: useLocalForage hook used for UI state (footersSeen and similar)"
+    governance: draft
+    implementation: planned
+    spec: "spec/state/use-localforage.md"
+    owner: bart
+    group: state
+    tests: []
+    depends_on:
+      - UI_SHELL_CONTRACT
+
+  - id: MDAT_PERSIST_COOKIE
+    title: "Persistence: Cookie-based desktop navbar open state"
+    governance: draft
+    implementation: planned
+    spec: "spec/state/cookie.md"
+    owner: bart
+    group: state
+    tests: []
+    depends_on:
+      - UI_NAV_STATE
+
+  - id: MDAT_STORAGE_ABSTRACTION
+    title: "Storage Abstraction: createStorage uses Tauri Store when available else localforage"
+    governance: draft
+    implementation: planned
+    spec: "spec/state/create-storage.md"
+    owner: bart
+    group: state
+    tests: []
+    depends_on:
+      - MDAT_RUNTIME_MODE
+      - MDAT_TAURI_STORE_PLUGIN
+
+  # --- Tauri Platform / Plugins / Capabilities ---
+  - id: MDAT_TAURI_CONFIG
+    title: "Tauri Config: tauri.conf.json build, bundling, CSP, window defaults, updater endpoints"
+    governance: draft
+    implementation: planned
+    spec: "spec/tauri/config.md"
+    owner: bart
+    group: tauri
+    tests: []
+    depends_on:
+      - MDAT_REPO_CONTRACT
+
+  - id: MDAT_TAURI_CAPABILITIES
+    title: "Tauri Capabilities: desktop.json and migrated.json permissions and scopes"
+    governance: draft
+    implementation: planned
+    spec: "spec/tauri/capabilities.md"
+    owner: bart
+    group: tauri
+    tests: []
+    depends_on:
+      - MDAT_TAURI_CONFIG
+
+  - id: MDAT_TAURI_LOGGING
+    title: "Tauri Logging: tauri-plugin-log configured for LogDir and Webview in dev"
+    governance: draft
+    implementation: planned
+    spec: "spec/tauri/logging.md"
+    owner: bart
+    group: tauri
+    tests: []
+    depends_on:
+      - MDAT_TAURI_CONFIG
+
+  - id: MDAT_TAURI_SINGLE_INSTANCE
+    title: "Tauri Single Instance: plugin forwards args/cwd to existing instance via newInstance event"
+    governance: draft
+    implementation: planned
+    spec: "spec/tauri/single-instance.md"
+    owner: bart
+    group: tauri
+    tests: []
+    depends_on:
+      - MDAT_TAURI_CONFIG
+
+  - id: MDAT_TAURI_TRAY_MENU
+    title: "Tauri Tray: tray icon, menu, events emitted to webview, toggle visibility, quit, icon swap"
+    governance: draft
+    implementation: planned
+    spec: "spec/tauri/tray.md"
+    owner: bart
+    group: tauri
+    tests: []
+    depends_on:
+      - MDAT_TAURI_CONFIG
+
+  - id: MDAT_TAURI_LONG_RUNNING_THREAD
+    title: "Tauri Background Task: periodic emitter longRunningThread event from Rust"
+    governance: draft
+    implementation: planned
+    spec: "spec/tauri/long-running-thread.md"
+    owner: bart
+    group: tauri
+    tests: []
+    depends_on:
+      - MDAT_TAURI_CONFIG
+      - MDAT_TAURI_LOGGING
+
+  - id: MDAT_TAURI_UPDATER_UI
+    title: "Tauri Updater UI: check on mount, show notification, download+install, relaunch"
+    governance: draft
+    implementation: planned
+    spec: "spec/tauri/updater-ui.md"
+    owner: bart
+    group: tauri
+    tests: []
+    depends_on:
+      - MDAT_TAURI_CONFIG
+
+  - id: MDAT_TAURI_NOTIFICATIONS_UI
+    title: "Tauri Notifications UI: native notifications for tray events and updater"
+    governance: draft
+    implementation: planned
+    spec: "spec/tauri/notifications-ui.md"
+    owner: bart
+    group: tauri
+    tests: []
+    depends_on:
+      - MDAT_TAURI_CONFIG
+
+  - id: MDAT_TAURI_WINDOW_STATE_PLUGIN
+    title: "Tauri Window State: tauri-plugin-window-state for size and position persistence"
+    governance: draft
+    implementation: planned
+    spec: "spec/tauri/window-state.md"
+    owner: bart
+    group: tauri
+    tests: []
+    depends_on:
+      - MDAT_TAURI_CONFIG
+
+  - id: MDAT_TAURI_STORE_PLUGIN
+    title: "Tauri Store: tauri-plugin-store enabled for filesystem-backed app storage"
+    governance: draft
+    implementation: planned
+    spec: "spec/tauri/store.md"
+    owner: bart
+    group: tauri
+    tests: []
+    depends_on:
+      - MDAT_TAURI_CONFIG
+
+  - id: MDAT_TAURI_PROVIDER_CONTEXT
+    title: "Tauri Provider: React context exposes OS type, dirs, fileSep, fullscreen, scaleFactor"
+    governance: draft
+    implementation: planned
+    spec: "spec/tauri/provider-context.md"
+    owner: bart
+    group: tauri
+    tests: []
+    depends_on:
+      - MDAT_RUNTIME_MODE
+      - MDAT_TAURI_CONFIG
+
+  - id: MDAT_TAURI_CUSTOM_TITLEBAR
+    title: "Custom Titlebar: Windows-only optional decorations toggle and TitleBar behavior"
+    governance: draft
+    implementation: planned
+    spec: "spec/tauri/custom-titlebar.md"
+    owner: bart
+    group: tauri
+    tests: []
+    depends_on:
+      - MDAT_TAURI_PROVIDER_CONTEXT
+      - UI_SHELL_CONTRACT
+
+  - id: MDAT_TAURI_FS_ENUM_APPFILES
+    title: "Filesystem: enumerate app documents files (getUserAppFiles) with recursive readDir"
+    governance: draft
+    implementation: planned
+    spec: "spec/tauri/fs-enum-appfiles.md"
+    owner: bart
+    group: tauri
+    tests: []
+    depends_on:
+      - MDAT_TAURI_PROVIDER_CONTEXT
+
+  - id: MDAT_TAURI_MIN_WIDTH
+    title: "Window Sizing: enforce min width using logical size conversion via monitor scale factor"
+    governance: draft
+    implementation: planned
+    spec: "spec/tauri/min-width.md"
+    owner: bart
+    group: tauri
+    tests: []
+    depends_on:
+      - MDAT_TAURI_PROVIDER_CONTEXT
+
+  # --- IPC / Commands ---
+  - id: MDAT_TAURI_IPC_COMMANDS
+    title: "IPC Commands: Rust commands tray_update_lang and process_file"
+    governance: draft
+    implementation: planned
+    spec: "spec/tauri/ipc-commands.md"
+    owner: bart
+    group: tauri
+    tests: []
+    depends_on:
+      - MDAT_TAURI_CONFIG
+
+  # --- Reverse Engineering Workflow ---
+  - id: MDAT_REVERSE_ENGINEERING_PROTOCOL
+    title: "Reverse Engineering Protocol: extract contracts from MDAT codepaths, then rebuild with RRv7 and shadcn/ui"
+    governance: draft
+    implementation: planned
+    spec: "spec/reverse-engineering/protocol.md"
+    owner: bart
+    group: core
+    tests: []
+    depends_on:
+      - MDAT_REPO_CONTRACT
+      - MDAT_APP_BOOT
+      - MDAT_TAURI_CONFIG
+      - UI_SHELL_CONTRACT
+      - ROUTING_RR7_CONTRACT
