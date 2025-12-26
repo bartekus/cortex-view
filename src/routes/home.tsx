@@ -1,9 +1,16 @@
+import type { Route } from "./+types/home";
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
+import reactLogo from "../assets/react.svg";
 import { invoke } from "@tauri-apps/api/core";
-import "./App.css";
 
-function App() {
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "New React Router App" },
+    { name: "description", content: "Welcome to React Router!" },
+  ];
+}
+
+export default function Home() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
 
@@ -36,16 +43,10 @@ function App() {
           greet();
         }}
       >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
-        />
+        <input id="greet-input" onChange={(e) => setName(e.currentTarget.value)} placeholder="Enter a name..." />
         <button type="submit">Greet</button>
       </form>
       <p>{greetMsg}</p>
     </main>
   );
 }
-
-export default App;

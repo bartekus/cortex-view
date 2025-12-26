@@ -1,0 +1,587 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ---------------------------------------------------------
+   Variants
+--------------------------------------------------------- */
+
+@custom-variant dark (&:is(.dark *));
+
+/* ---------------------------------------------------------
+   Tailwind v4 Theme Mappings
+   (Semantic tokens → root tokens)
+--------------------------------------------------------- */
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/InterVariable.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* v3’s extra color namespaces */
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+
+  --color-success: var(--success);
+  --color-warn: var(--warn);
+
+  --radius: 0.75rem;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+}
+
+/* ---------------------------------------------------------
+   Root Tokens - Light Mode (OKLCH)
+   (Fill these with OKLCH equivalents of Lovable HSL)
+--------------------------------------------------------- */
+
+:root {
+  --background: oklch(100% 0 89.9);
+  --foreground: oklch(17.31% 0.006 264);
+
+  --primary: oklch(55.13% 0.085 262.1);
+  --primary-foreground: oklch(100% 0 89.9);
+
+  --accent: oklch(65.11% 0.069 299.3);
+  --accent-foreground: oklch(100% 0 89.9);
+
+  --surface: oklch(100% 0 89.9);
+  --surface-2: oklch(97.46% 0.002 264.5);
+
+  --text: oklch(17.31% 0.006 264);
+  --text-muted: oklch(53.37% 0.016 264.2);
+
+  --success: oklch(62.3% 0.068 149.2);
+  --warn: oklch(76.97% 0.066 70.6);
+
+  --card: oklch(100% 0 89.9);
+  --card-foreground: oklch(17.31% 0.006 264);
+
+  --popover: oklch(100% 0 89.9);
+  --popover-foreground: oklch(17.31% 0.006 264);
+
+  --secondary: oklch(96.61% 0.002 264.5);
+  --secondary-foreground: oklch(17.31% 0.006 264);
+
+  --muted: oklch(96.61% 0.002 264.5);
+  --muted-foreground: oklch(53.37% 0.016 264.2);
+
+  --destructive: oklch(63.56% 0.083 25.4);
+  --destructive-foreground: oklch(100% 0 89.9);
+
+  --border: oklch(92.47% 0.004 264.5);
+  --input: oklch(92.47% 0.004 264.5);
+  --ring: oklch(55.13% 0.085 262.1);
+
+  /* shadows from Lovable */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.03);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07),
+  0 2px 4px -2px rgb(0 0 0 / 0.07);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08),
+  0 4px 6px -4px rgb(0 0 0 / 0.08);
+  --shadow-glow: 0 0 20px rgb(45 106 227 / 0.15);
+
+  /* gradients rewritten to use OKLCH tokens directly */
+  --gradient-primary: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--accent) 100%
+  );
+
+  --gradient-subtle: linear-gradient(
+          180deg,
+          var(--background) 0%,
+          var(--surface-2) 100%
+  );
+
+  /* hero glow: soft blue halo, no nested oklch() */
+  --gradient-radial: radial-gradient(
+          circle at 50% 0%,
+          color-mix(in oklch, var(--primary) 20%, transparent) 0%,
+          transparent 55%
+  );
+
+  /* Fallback for Radix accordion animations */
+  --radix-accordion-content-height: 0px;
+
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+}
+
+/* ---------------------------------------------------------
+   Dark Mode Tokens - OKLCH
+   (converted from Lovable's dark HSL)
+--------------------------------------------------------- */
+
+.dark {
+  --background: oklch(17.31% 0.006 264);
+  --foreground: oklch(98.31% 0.001 264.5);
+
+  --primary: oklch(69.41% 0.064 262.9);
+  --primary-foreground: oklch(17.31% 0.006 264);
+
+  --accent: oklch(71.81% 0.059 300.4);
+  --accent-foreground: oklch(17.31% 0.006 264);
+
+  --surface: oklch(17.31% 0.006 264);
+  --surface-2: oklch(20.59% 0.007 264.1);
+
+  --text: oklch(98.31% 0.001 264.5);
+  --text-muted: oklch(70.86% 0.011 264.4);
+
+  --success: oklch(73.47% 0.08 149);
+  --warn: oklch(80.92% 0.06 76.6);
+
+  --card: oklch(17.31% 0.006 264);
+  --card-foreground: oklch(98.31% 0.001 264.5);
+
+  --popover: oklch(20.59% 0.007 264.1);
+  --popover-foreground: oklch(98.31% 0.001 264.5);
+
+  --secondary: oklch(23.64% 0.009 264);
+  --secondary-foreground: oklch(98.31% 0.001 264.5);
+
+  --muted: oklch(23.64% 0.009 264);
+  --muted-foreground: oklch(70.86% 0.011 264.4);
+
+  --destructive: oklch(66.73% 0.074 23.6);
+  --destructive-foreground: oklch(100% 0 89.9);
+
+  --border: oklch(27.55% 0.012 263.9);
+  --input: oklch(27.55% 0.012 263.9);
+  --ring: oklch(69.41% 0.064 262.9);
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4),
+  0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5),
+  0 4px 6px -4px rgb(0 0 0 / 0.4);
+  --shadow-glow: 0 0 30px rgb(111 164 255 / 0.2);
+
+  --gradient-primary: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--accent) 100%
+  );
+
+  --gradient-subtle: linear-gradient(
+          180deg,
+          var(--background) 0%,
+          var(--surface-2) 100%
+  );
+
+  --gradient-radial: radial-gradient(
+          circle at 50% 0%,
+          color-mix(in oklch, var(--primary) 18%, transparent) 0%,
+          transparent 55%
+  );
+}
+
+/* ---------------------------------------------------------
+   Base Layer
+--------------------------------------------------------- */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html:not(.hydrated) .glass {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  html,
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  body {
+    font-family: var(--font-sans), system-ui;
+    font-feature-settings: "cv11", "ss01";
+    font-variation-settings: normal;
+  }
+
+  header {
+    transform: translateZ(0);
+  }
+
+  footer .container {
+    opacity: 1;
+  }
+
+  .container {
+    margin-inline: auto;
+    padding-inline: 2rem;
+    max-width: 1400px;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 3vw, 1.875rem);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  h4 {
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  .skip-to-content {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 px-4 py-2 bg-primary text-primary-foreground rounded-md;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ---------------------------------------------------------
+   Utilities (OKLCH-safe)
+--------------------------------------------------------- */
+
+@layer utilities {
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+
+  .bg-gradient-subtle {
+    background-image: var(--gradient-subtle);
+  }
+
+  .bg-gradient-radial {
+    background-image: var(--gradient-radial);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass {
+    background: color-mix(in oklch, var(--surface) 70%, transparent);
+    border: 1px solid color-mix(in oklch, var(--border) 50%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .film-grain {
+    position: relative;
+  }
+
+  .film-grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.02;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .spotlight-hover {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .spotlight-hover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background: radial-gradient(
+            circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            color-mix(in oklch, var(--primary) 12%, transparent) 0%,
+            transparent 50%
+    );
+    transition: opacity 0.3s ease;
+  }
+
+  .spotlight-hover:hover::before {
+    opacity: 1;
+  }
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height, 0px); }
+  }
+
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height, 0px); }
+    to { height: 0; }
+  }
+
+  .animate-accordion-down {
+    animation: accordion-down 0.2s ease-out;
+  }
+
+  .animate-accordion-up {
+    animation: accordion-up 0.2s ease-out;
+  }
+}
+
+/* Prism bits: use var(--accent), var(--primary), etc directly */
+@layer base {
+  code[class*="language-"],
+  pre[class*="language-"] {
+    @apply text-sm;
+    font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas,
+    "Courier New", monospace;
+    line-height: 1.6;
+    white-space: pre;
+    tab-size: 2;
+  }
+
+  pre[class*="language-"] {
+    @apply p-6 overflow-auto rounded-lg;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    margin: 1.5em 0;
+  }
+
+  :not(pre) > code[class*="language-"] {
+    @apply px-1.5 py-0.5 rounded;
+    background: var(--surface-2);
+    color: var(--foreground);
+  }
+
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .token.punctuation {
+    color: var(--foreground);
+  }
+
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: var(--accent);
+  }
+
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: var(--success);
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css .token.string {
+    color: var(--primary);
+  }
+
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: var(--primary);
+  }
+
+  .token.function,
+  .token.class-name {
+    color: var(--accent);
+  }
+
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: var(--warn);
+  }
+}
+
+/* ---------------------------------------------------------
+   Custom Prose Styles for Blog Content
+   (Since @tailwindcss/typography isn't installed)
+--------------------------------------------------------- */
+
+.prose-content {
+  @apply text-base md:text-lg leading-relaxed;
+  color: var(--text);
+}
+
+.prose-content h2 {
+  @apply text-3xl md:text-4xl font-bold mt-12 mb-6 first:mt-0;
+  color: var(--text);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.prose-content h3 {
+  @apply text-2xl md:text-3xl font-semibold mt-10 mb-4;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.prose-content h4 {
+  @apply text-xl md:text-2xl font-semibold mt-8 mb-3;
+  color: var(--text);
+}
+
+.prose-content p {
+  @apply mb-6;
+  color: var(--text);
+}
+
+.prose-content ul,
+.prose-content ol {
+  @apply mb-6 pl-6;
+  color: var(--text);
+}
+
+.prose-content ul {
+  @apply list-disc;
+}
+
+.prose-content ol {
+  @apply list-decimal;
+}
+
+.prose-content li {
+  @apply mb-2;
+}
+
+.prose-content li > p {
+  @apply mb-2;
+}
+
+.prose-content a {
+  @apply text-primary underline underline-offset-2 hover:text-primary/80 transition-colors;
+}
+
+.prose-content strong {
+  @apply font-semibold;
+  color: var(--text);
+}
+
+.prose-content em {
+  @apply italic;
+}
+
+.prose-content blockquote {
+  @apply border-l-4 border-primary pl-6 py-2 my-6 italic;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.prose-content code {
+  @apply px-1.5 py-0.5 rounded text-sm font-mono;
+  background: var(--surface-2);
+  color: var(--accent);
+  border: 1px solid var(--border);
+}
+
+.prose-content pre {
+  @apply p-6 rounded-xl overflow-x-auto my-6;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.prose-content pre code {
+  @apply p-0 border-0 bg-transparent;
+  color: var(--foreground);
+}
+
+.prose-content hr {
+  @apply my-12 border-0 border-t border-border;
+}
+
+.prose-content table {
+  @apply w-full my-6 border-collapse;
+}
+
+.prose-content th,
+.prose-content td {
+  @apply px-4 py-2 border border-border;
+}
+
+.prose-content th {
+  @apply font-semibold bg-surface-2;
+}
+
+.prose-content img {
+  @apply rounded-lg my-6;
+  max-width: 100%;
+  height: auto;
+}
