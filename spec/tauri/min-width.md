@@ -1,18 +1,21 @@
-
 # Window Min-Width (MDAT_TAURI_MIN_WIDTH)
 
 ## Summary
+
 Enforces a minimum logical window width to ensure UI usability.
 
 ## User value
+
 Prevents the layout from breaking or becoming unusable if the window is resized too small.
 
 ## Scope
+
 - Frontend: `src/tauri/TauriProvider.tsx`
 - Rust: `N/A`
 - Config: `tauri.conf.json` (`minWidth` key)
 
 ## Implementation anchors
+
 - Files:
   - `src/tauri/TauriProvider.tsx`
 - Key symbols:
@@ -21,6 +24,7 @@ Prevents the layout from breaking or becoming unusable if the window is resized 
   - `N/A`
 
 ## Contract
+
 1. **Logic**:
    - Gets `currentMonitor()` scale factor.
    - Gets current `innerSize()` (Physical).
@@ -31,9 +35,11 @@ Prevents the layout from breaking or becoming unusable if the window is resized 
    - Runs on mount.
 
 ## Acceptance checks
+
 - [ ] Resize window to be very narrow.
 - [ ] Refresh app (triggering mount check).
 - [ ] Window should snap back to minimum width.
 
 ## Notes / edge cases
+
 - `tauri.conf.json` also has `minWidth`. This hook acts as a runtime enforcement, potentially for dynamic constraints.

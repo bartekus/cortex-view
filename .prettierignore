@@ -1,4 +1,9 @@
+.bin
+.react-router
+.vscode
 public
 build
 dist
 package-lock.json
+src-tauri/target
+src/components/ui

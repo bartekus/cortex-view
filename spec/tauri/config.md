@@ -1,18 +1,21 @@
-
 # Tauri Config (MDAT_TAURI_CONFIG)
 
 ## Summary
+
 The central configuration for the Tauri build pipeline, windowing defaults, and security policies.
 
 ## User value
+
 Defines the app's identity (name, version), window behavior (hidden by default to avoid flash), and security boundaries (CSP).
 
 ## Scope
+
 - Frontend: `N/A`
 - Rust: `N/A`
 - Config: `src-tauri/tauri.conf.json`
 
 ## Implementation anchors
+
 - Files:
   - `src-tauri/tauri.conf.json`
 - Key symbols:
@@ -23,6 +26,7 @@ Defines the app's identity (name, version), window behavior (hidden by default t
   - `N/A`
 
 ## Contract
+
 1. **Build Commands**:
    - Dev: `pnpm start` at `http://localhost:1420`
    - Prod: `pnpm build` -> `../build`
@@ -38,9 +42,11 @@ Defines the app's identity (name, version), window behavior (hidden by default t
    - Pubkey: (Empty in template, must be filled for prod)
 
 ## Acceptance checks
+
 - [ ] `pnpm tauri dev` launches the application.
 - [ ] Application window is initially hidden and only appears when ready (handled by `TauriProvider`).
 - [ ] Window is resizable.
 
 ## Notes / edge cases
+
 - The `v1` to `v2` migration might have left some artifacts or specific configurations in `tauri.conf.json` that need validation against Tauri v2 schemas.

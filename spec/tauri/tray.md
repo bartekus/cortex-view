@@ -1,18 +1,21 @@
-
 # Tauri Tray (MDAT_TAURI_TRAY_MENU)
 
 ## Summary
+
 System tray icon and menu providing background persistence and quick actions.
 
 ## User value
+
 Keeps the app accessible even when the main window is closed or minimized.
 
 ## Scope
+
 - Frontend: `src/App.tsx`
 - Rust: `src-tauri/src/tray_icon.rs`
 - Config: `N/A`
 
 ## Implementation anchors
+
 - Files:
   - `src-tauri/src/tray_icon.rs`
   - `src/App.tsx`
@@ -26,6 +29,7 @@ Keeps the app accessible even when the main window is closed or minimized.
   - `system-tray`: Icon clicks (Left/Right).
 
 ## Contract
+
 1. **Menu Items**:
    - `SubmenuBuilder` ("Sub Menu!")
    - `toggle-visibility` ("Hide Window" / "Show Window")
@@ -39,10 +43,12 @@ Keeps the app accessible even when the main window is closed or minimized.
    - Displays debug notification with payload message.
 
 ## Acceptance checks
+
 - [ ] Tray icon appears on launch.
 - [ ] "Quit" menu item terminates the app.
 - [ ] "Toggle tray icon" changes the icon image.
 - [ ] Clicking tray icon brings app to front.
 
 ## Notes / edge cases
+
 - `tray_update_lang` command exists but internationalization inside the Rust tray menu is marked as TODO/Untested in `tray_icon.rs`.

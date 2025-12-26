@@ -1,18 +1,21 @@
-
 # Custom Titlebar (MDAT_TAURI_CUSTOM_TITLEBAR)
 
 ## Summary
+
 Rendering a custom React-based titlebar on Windows to blend with the app theme, while using native decorations on macOS/Linux.
 
 ## User value
+
 Consistent, branded look-and-feel on Windows where native titlebars can look dated or mismatched.
 
 ## Scope
+
 - Frontend: `src/tauri/TitleBar.tsx`, `src/tauri/TauriProvider.tsx`
 - Rust: `N/A`
 - Config: `N/A`
 
 ## Implementation anchors
+
 - Files:
   - `src/tauri/TitleBar.tsx`
   - `src/tauri/TauriProvider.tsx`
@@ -24,6 +27,7 @@ Consistent, branded look-and-feel on Windows where native titlebars can look dat
   - `N/A`
 
 ## Contract
+
 1. **Activation**:
    - `WIN32_CUSTOM_TITLEBAR` constant in `TauriProvider`.
    - Only active if `osType === 'windows'` AND `!isFullScreen`.
@@ -35,9 +39,11 @@ Consistent, branded look-and-feel on Windows where native titlebars can look dat
    - Menu dropdown on Icon click (Minimize, Maximize, Close).
 
 ## Acceptance checks
+
 - [ ] (Windows) Verify custom titlebar renders.
 - [ ] (Windows) Verify buttons control the window correctly.
 - [ ] (Non-Windows) Verify custom titlebar is absent.
 
 ## Notes / edge cases
+
 - `WIN32_CUSTOM_TITLEBAR` is currently `false` in the source, meaning native decorations are used by default.
