@@ -10,7 +10,7 @@ Prevents confusion and resource conflicts from multiple open app windows. Suppor
 
 ## Scope
 
-- Frontend: `src/App.tsx`
+- Frontend: `src/root.tsx`
 - Rust: `src-tauri/src/lib.rs`
 - Config: `N/A`
 
@@ -18,7 +18,7 @@ Prevents confusion and resource conflicts from multiple open app windows. Suppor
 
 - Files:
   - `src-tauri/src/lib.rs`
-  - `src/App.tsx`
+  - `src/root.tsx`
 - Key symbols:
   - `tauri_plugin_single_instance`
   - `newInstance` (Event)

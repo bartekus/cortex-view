@@ -10,14 +10,14 @@ Faster initial load time; code for heavy views is only downloaded when needed.
 
 ## Scope
 
-- Frontend: `src/App.tsx`, `src/views/LazyView.tsx`
+- Frontend: `src/root.tsx`, `src/views/LazyView.tsx`
 - Rust: `N/A`
 - Config: `Vite` (Auto-splitting)
 
 ## Implementation anchors
 
 - Files:
-  - `src/App.tsx`
+  - `src/root.tsx`
 - Key symbols:
   - `lazy()`
   - `LazyExoticComponent`
@@ -32,7 +32,7 @@ Faster initial load time; code for heavy views is only downloaded when needed.
 
 ## Acceptance checks
 
-- [ ] Build app (`npm run build`).
+- [ ] Build app (`pnpm run build`).
 - [ ] Verify `dist/assets` contains separate chunks for lazy views.
 
 ## Notes / edge cases

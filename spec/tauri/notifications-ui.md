@@ -10,7 +10,7 @@ Immediate feedback for background actions (Tray events) or critical system state
 
 ## Scope
 
-- Frontend: `src/App.tsx`
+- Frontend: `src/root.tsx`
 - Rust: `N/A`
 - Config: `N/A`
 - Libraries: `@mantine/notifications`
@@ -18,7 +18,7 @@ Immediate feedback for background actions (Tray events) or critical system state
 ## Implementation anchors
 
 - Files:
-  - `src/App.tsx`
+  - `src/root.tsx`
 - Key symbols:
   - `notifications.show`
 - Events:

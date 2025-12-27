@@ -2,7 +2,7 @@
 
 ## Summary
 
-The top-level layout component (`AppShell`) governing the responsive structure of the application.
+The top-level layout component (`Layout` in `root.tsx`) governing the responsive structure of the application.
 
 ## User value
 
@@ -10,18 +10,19 @@ Provides a consistent, responsive container for navigation and content, adapting
 
 ## Scope
 
-- Frontend: `src/App.tsx`
+- Frontend: `src/root.tsx`
 - Rust: `N/A`
 - Config: `N/A`
 
 ## Implementation anchors
 
 - Files:
-  - `src/App.tsx`
+  - `src/root.tsx`
 - Key symbols:
-  - `AppShell` (Mantine)
-  - `Navbar`, `Header`, `Main`, `Aside`, `Footer`
-  - `mobileNavOpened`, `desktopNavOpened`
+  - `Layout` (Function Component)
+  - `Meta`, `Links`, `Scripts`, `ScrollRestoration`
+  - `AppShell` (Mantine - *To be implemented*)
+  - `Navbar`, `Header` (*To be implemented*)
 - Events:
   - `N/A`
 

@@ -10,7 +10,7 @@ Proof of concept for backend-driven events (e.g., job completion, status updates
 
 ## Scope
 
-- Frontend: `src/App.tsx`
+- Frontend: `src/root.tsx`
 - Rust: `src-tauri/src/utils.rs`
 - Config: `N/A`
 
@@ -18,7 +18,7 @@ Proof of concept for backend-driven events (e.g., job completion, status updates
 
 - Files:
   - `src-tauri/src/utils.rs`
-  - `src/App.tsx`
+  - `src/root.tsx`
 - Key symbols:
   - `long_running_thread` (async function)
   - `longRunningThread` (Event)

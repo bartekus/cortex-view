@@ -10,14 +10,14 @@ Consistent scrolling experience across OSs and easy navigation for long content.
 
 ## Scope
 
-- Frontend: `src/App.tsx`, `src/components/ScrollToTop.tsx`
+- Frontend: `src/root.tsx`, `src/components/ScrollToTop.tsx`
 - Rust: `N/A`
 - Config: `N/A`
 
 ## Implementation anchors
 
 - Files:
-  - `src/App.tsx`
+  - `src/root.tsx`
   - `src/components/ScrollToTop.tsx`
 - Key symbols:
   - `SimpleBar`

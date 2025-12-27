@@ -10,7 +10,7 @@ Assist in debugging issues by preserving logs.
 
 ## Scope
 
-- Frontend: `src/main.tsx`
+- Frontend: `src/root.tsx`, `src/lib/logger.ts` (implied)
 - Rust: `src-tauri/src/lib.rs`
 - Config: `src-tauri/capabilities/desktop.json` (`log:default`)
 
@@ -18,7 +18,7 @@ Assist in debugging issues by preserving logs.
 
 - Files:
   - `src-tauri/src/lib.rs`
-  - `src/main.tsx`
+  - `src/root.tsx`
 - Key symbols:
   - `tauri_plugin_log::TargetKind::LogDir`
   - `tauri_plugin_log::TargetKind::Webview`
@@ -37,7 +37,7 @@ Assist in debugging issues by preserving logs.
 
 ## Acceptance checks
 
-- [ ] In Development (`npm run tauri dev`), `tauriLogger.info` prints to the browser console.
+- [ ] In Development (`pnpm run tauri dev`), `tauriLogger.info` prints to the browser console.
 - [ ] In Production/Release, logs are written to the platform-specific logs directory.
 
 ## Notes / edge cases

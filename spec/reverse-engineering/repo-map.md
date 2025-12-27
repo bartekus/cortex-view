@@ -6,7 +6,7 @@
 
 - **Entrypoint**: `src/main.tsx` (React root, `tauri-plugin-log` integration, global `ErrorBoundary`)
 - **Composition**: `src/Providers.tsx` (TauriProvider -> MantineProvider -> BrowserRouter)
-- **Shell**: `src/App.tsx` (Layout, routing, `useEffect` initialization of Tauri listeners)
+- **Shell**: `src/root.tsx` (Layout, routing, `useEffect` initialization of Tauri listeners)
 
 ### Tauri Platform (Rust + Webview)
 
@@ -34,7 +34,7 @@
 
 - Detected via `isTauri()` from `@tauri-apps/api/core`.
 - **Key Branch Points**:
-  - `src/App.tsx`: Event listeners (longRunningThread, systemTray, newInstance) are only attached if `isTauri()`.
+  - `src/root.tsx`: Event listeners (longRunningThread, systemTray, newInstance) are only attached if `isTauri()`.
   - `src/tauri/TauriProvider.tsx`: Window sizing, FS operations, and OS context extraction await `isTauri()`.
   - `src/tauri/storage.ts` (presumed location): Switches storage backend.
 

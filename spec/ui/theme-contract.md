@@ -10,14 +10,14 @@ Visual comfort.
 
 ## Scope
 
-- Frontend: `src/App.tsx`
+- Frontend: `src/root.tsx`
 - Rust: `N/A`
 - Config: `N/A`
 
 ## Implementation anchors
 
 - Files:
-  - `src/App.tsx`
+  - `src/root.tsx`
 - Key symbols:
   - `useMantineColorScheme`
   - `useComputedColorScheme`

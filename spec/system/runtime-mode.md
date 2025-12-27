@@ -10,7 +10,7 @@ Allows a single codebase to serve two platforms. Web users get a functioning sit
 
 ## Scope
 
-- Frontend: `src/tauri/TauriProvider.tsx`, `src/App.tsx`, `src/tauri/storage.ts`
+- Frontend: `src/tauri/TauriProvider.tsx`, `src/root.tsx`, `src/tauri/storage.ts`
 - Rust: `N/A`
 - Config: `N/A`
 
@@ -18,7 +18,7 @@ Allows a single codebase to serve two platforms. Web users get a functioning sit
 
 - Files:
   - `src/tauri/TauriProvider.tsx`
-  - `src/App.tsx`
+  - `src/root.tsx`
   - `src/tauri/storage.ts`
 - Key symbols:
   - `isTauri()` (from `@tauri-apps/api/core`)
@@ -42,7 +42,7 @@ Allows a single codebase to serve two platforms. Web users get a functioning sit
 
 ## Acceptance checks
 
-- [ ] **Web Build**: Runs in a normal browser (Chrome/Safari) without crashing due to "window.**TAURI** is not defined" or similar errors. Use `npm run dev`.
+- [ ] **Web Build**: Runs in a normal browser (Chrome/Safari) without crashing due to "window.**TAURI** is not defined" or similar errors. Use `pnpm run dev`.
 - [ ] **Tauri Build**: Runs in the Tauri window and successfully calls Rust commands (e.g., window size, OS type detection).
 - [ ] **Data Persistence**: Web uses IndexedDB/LocalStorage; Tauri uses JSON files (if enabled).
 

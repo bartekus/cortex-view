@@ -10,7 +10,7 @@ Ensures the codebase remains navigable and predictable for new contributors, mai
 
 ## Scope
 
-- Frontend: `src/` (React, Vite, Core logic)
+- Frontend: `src/` (React, React-Router v7, Vite, Core logic)
 - Rust: `src-tauri/` (Tauri runtime, plugins, tray)
 - Config: `package.json`, `src-tauri/tauri.conf.json`
 
@@ -18,7 +18,7 @@ Ensures the codebase remains navigable and predictable for new contributors, mai
 
 - Files:
   - `spec/reverse-engineering/repo-map.md` (Detailed map)
-  - `src/main.tsx` (Frontend entry)
+  - `src/root.tsx` (Frontend Entrypoint)
   - `src-tauri/src/lib.rs` (Backend entry)
 - Key symbols:
   - `N/A` (Structure level)
@@ -35,15 +35,14 @@ Ensures the codebase remains navigable and predictable for new contributors, mai
    - `src-tauri/` MUST contain all Rust platform code and build configuration.
    - `src/tauri/` (in frontend) MUST contain the React-side interface to Tauri APIs.
 3. **Entrypoints**:
-   - Web: `index.html` -> `src/main.tsx`
+   - Web: `index.html` -> `src/root.tsx` (via React Router)
    - Desktop: `src-tauri/src/lib.rs` (via `run()`)
 
 ## Acceptance checks
 
-- [ ] A new contributor can locate the boot path (`src/main.tsx`) in < 2 minutes.
+- [ ] A new contributor can locate the boot path (`src/root.tsx`) in < 2 minutes.
 - [ ] A new contributor can locate the Tauri configuration (`src-tauri/tauri.conf.json`) in < 2 minutes.
-- [ ] `npm run dev` starts the web version.
-- [ ] `npm run tauri dev` starts the desktop version.
+- [ ] `pnpm run tauri dev` starts the desktop version.
 
 ## Notes / edge cases
 

@@ -10,35 +10,27 @@ Allows the user to "Refresh" and attempt to recover from a buggy state without n
 
 ## Scope
 
-- Frontend: `src/main.tsx`, `src/App.tsx`, `src/views/FallbackErrorBoundary.tsx`
+- Frontend: `src/root.tsx`
 - Rust: `N/A`
 - Config: `N/A`
 
 ## Implementation anchors
 
 - Files:
-  - `src/views/FallbackErrorBoundary.tsx`
-  - `src/main.tsx` (App Root)
-  - `src/App.tsx` (Route Root)
+  - `src/root.tsx`
 - Key symbols:
-  - `ErrorBoundary` (react-error-boundary)
-  - `FallbackAppRender`
+  - `export function ErrorBoundary`
+  - `isRouteErrorResponse`
 - Events:
-  - `onError`
-  - `onReset`
+  - `N/A`
 
 ## Contract
 
-1. **Layer 1 (Route Level)**:
-   - In `App.tsx` inside `SimpleBar`.
-   - Catches errors during View rendering.
-   - Keeps Shell (Navigation, Header) intact.
-2. **Layer 2 (App Level)**:
-   - In `main.tsx`.
-   - Catches massive failures (e.g., Context missing).
-   - Shows "Fatal Error".
-3. **Recovery**:
-   - `onReset` clears error and navigates to `/`.
+1.  **Unified Boundary**:
+    - RRv7 `ErrorBoundary` export in `root.tsx` catches both Routing errors (404s) and Render errors.
+    - Displays a "Fatal Error" style UI with stack traces in DEV.
+2.  **Recovery**:
+    - Users can reload the page to attempt recovery.
 
 ## Acceptance checks
 

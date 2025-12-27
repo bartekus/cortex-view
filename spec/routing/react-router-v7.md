@@ -2,7 +2,7 @@
 
 ## Summary
 
-Client-side routing configuration, currently using React Router v6 but documented as a contract for v7 migration.
+Client-side routing configuration using React Router v7 Config Validation.
 
 ## User value
 
@@ -10,37 +10,39 @@ Deep linking, browser history support (Back/Forward), and URL-driven state.
 
 ## Scope
 
-- Frontend: `src/App.tsx`, `src/Providers.tsx`, `src/views/*.tsx`
+- Frontend: `src/routes.ts`, `src/root.tsx`, `src/routes/*`
 - Rust: `N/A`
-- Config: `N/A`
+- Config: `react-router.config.ts` (if applicable)
 
 ## Implementation anchors
 
 - Files:
-  - `src/App.tsx`
-  - `src/Providers.tsx`
+  - `src/routes.ts` (Route definitions)
+  - `src/root.tsx` (Root layout)
 - Key symbols:
-  - `BrowserRouter`
-  - `Routes`, `Route`
-  - `Navigate`
+  - `RouteConfig`
+  - `index`, `layout`, `route` (Route helpers)
+  - `Outlet` (Layout placeholder)
 - Events:
   - `N/A`
 
 ## Contract
 
-1. **Router**: `BrowserRouter` wrapped in `Providers.tsx`.
-2. **Route Definitions**:
-   - Defined in `App.tsx` via `Routes` component.
-   - **Root Redirect**: `path='/'` -> `<Navigate to={views[0].path} />`.
-   - **Dynamic Mapping**: Maps `views` array to `<Route>` elements.
-3. **Navigation**:
-   - `NavLink` used in Sidebar (Active state support).
+1.  **Router Config**:
+    - Routes are defined in `src/routes.ts` exporting `RouteConfig`.
+    - Supports Flattened Routes (RRv7 default) or nested layouts.
+2.  **Route Definitions**:
+    - `index("routes/home.tsx")`: Maps `/` to Home module.
+    - Additional routes added via helper functions (`route("path", "file")`).
+3.  **Root Layout**:
+    - `src/root.tsx` acts as the global layout, rendering `<Outlet />` where child routes appear.
 
 ## Acceptance checks
 
-- [ ] URL `/` redirects to first view (e.g., `/example-view`).
+- [ ] URL `/` loads the `routes/home.tsx` view.
+- [ ] Adding a new route in `src/routes.ts` makes it accessible via URL.
 - [ ] Back button works after navigation.
 
 ## Notes / edge cases
 
-- `HashRouter` is sometimes preferred for Electron/Tauri but `BrowserRouter` is used here. Ensure `tauri.conf.json` or server config handles client-side routing fallback if not in `dist` mode (Tauri handles `index.html` fallback automatically).
+- Config-based routing is static; dynamic runtime routes (if needed) might need a different approach, but standard app routes belong in `routes.ts`.

@@ -37,7 +37,7 @@ Robust storage for settings and state that survives app restart, more reliable t
 
 ## Acceptance checks
 
-- [ ] `npm run tauri dev`.
+- [ ] `pnpm run tauri dev`.
 - [ ] Modify a setting verified to use Store.
 - [ ] Check `Library/Application Support/App.Name/` (or OS equivalent) for `.settings.dat` or similar JSON store file.
 

@@ -10,44 +10,39 @@ Prevents "flash of unstyled content," ensures translations are loaded, and catch
 
 ## Scope
 
-- Frontend: `src/main.tsx`, `src/Providers.tsx`, `src/App.tsx`
+- Frontend: `src/root.tsx`, `src/routes.ts`
 - Rust: `N/A`
 - Config: `src/translations/i18n.ts`
 
 ## Implementation anchors
 
 - Files:
-  - `src/main.tsx`
-  - `src/Providers.tsx`
-  - `src/views/FallbackErrorBoundary.tsx`
+  - `src/root.tsx` (Replaces `main.tsx` and `App.tsx`)
 - Key symbols:
-  - `Providers` (Component)
+  - `Layout` (Component)
   - `ErrorBoundary` (Component)
-  - `tauriLogger`
+  - `links` (Review Stylesheet Loading)
 - Events:
-  - `onReset` (ErrorBoundary)
+  - `N/A`
 
 ## Contract
 
-1. **Provider Order**:
-   - `<TauriProvider>` (Platform context)
-   - `<Mantine>` (Theme/UI Style)
-   - `<BrowserRouter>` (Routing)
-   - _Note_: This order is critical. Theme might depend on Platform settings; Router depends on nothing but provides context to App.
-2. **i18n Initialization**:
-   - `import './translations/i18n.js'` MUST occur as a side-effect import before the first render cycle to ensure the global `i18n` instance is primed.
-3. **Global Error Boundary**:
-   - Wrapping `<App />` is a top-level `ErrorBoundary`.
-   - `onError`: Logs the error via `tauriLogger.error`.
-   - `onReset`: Resets `location.pathname = '/'` to recover from route-specific crashes.
-   - `FallbackComponent`: `FallbackAppRender`.
+1.  **Entrypoint (RRv7)**:
+    - `src/root.tsx` is the Module Root.
+    - `Layout` component wraps the document (`<html>`, `<body>`).
+    - Global Providers (Tauri, Theme) should be composed here, wrapping `{children}` or `<Outlet />`.
+2.  **i18n Initialization**:
+    - `import './translations/i18n.js'` (or equivalent init logic) MUST occur before the first render.
+3.  **Global Error Boundary**:
+    - `export function ErrorBoundary` in `src/root.tsx` handles top-level crashes (404s, unhandled exceptions).
+    - Replaces the legacy `FallbackAppRender`.
 
 ## Acceptance checks
 
-- [ ] Intentionally throwing an error in a view components triggers the `FallbackAppRender` UI.
-- [ ] Clicking "Refresh" (or equivalent action) in the fallback UI resets the path to `/` and attempts a re-render.
+- [ ] Intentionally throwing an error in a view component triggers the `ErrorBoundary` UI in `src/root.tsx`.
 - [ ] Application starts without console errors regarding missing context providers.
 
 ## Notes / edge cases
 
-- If `TauriProvider` fails to initialize (e.g., Tauri APIs missing in web mode), it must fail gracefully or provide default "Web" values (mocking the context) so the app can still boot.
+- In RRv7, "Providers" often sit inside the `Layout` component or are configured via `route.lazy` / `clientLoader` if they need async data.
+- Ensure `TauriProvider` doesn't block the initial HTML render if possible (or show a splash screen).

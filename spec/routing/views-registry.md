@@ -10,14 +10,15 @@ DRY (Don't Repeat Yourself) - Adding a page once adds it to both routing and nav
 
 ## Scope
 
-- Frontend: `src/App.tsx`
+- Frontend: `src/routes.ts` (Routing), `src/lib/views.ts` (Planned Navigation Registry)
 - Rust: `N/A`
 - Config: `N/A`
 
 ## Implementation anchors
 
 - Files:
-  - `src/App.tsx`
+  - `src/routes.ts`
+  - `src/lib/views.ts` (*To be implemented*)
 - Key symbols:
   - `interface View`
   - `const views: View[]`
@@ -26,21 +27,21 @@ DRY (Don't Repeat Yourself) - Adding a page once adds it to both routing and nav
 
 ## Contract
 
-1. **Schema**:
-   - `component`: React Component (Func or Lazy).
-   - `path`: URL string (`/path`).
-   - `name`: Display string (translated).
-   - `exact`: boolean (optional).
-2. **Usage**:
-   - `views.map(...)` generates `<NavLink>` in Sidebar.
-   - `views.map(...)` generates `<Route>` in Main.
+1.  **Schema**:
+    - `path`: URL string (`/path`).
+    - `name`: Display string (translated).
+    - `icon`: Icon component (optional).
+2.  **Usage**:
+    - **Routing**: `routes.ts` imports view modules directly.
+    - **Navigation**: Sidebar maps over `views` array to generate `<NavLink>`.
+    - *Note*: In RRv7, "Routing" and "Navigation" are slightly decoupled. `routes.ts` defines valid URLs; `views` registry defines the Menu.
 
 ## Acceptance checks
 
-- [ ] Add a new object to `views` array.
+- [ ] Add a new object to `views` array (Registry).
 - [ ] New link appears in Sidebar.
-- [ ] Clicking link renders the Component.
+- [ ] Ensure corresponding route exists in `routes.ts`.
 
 ## Notes / edge cases
 
-- `views[0]` is special (default redirect target).
+- `views[0]` is often used as the default redirect target in `src/root.tsx` or `routes.ts` (index route).

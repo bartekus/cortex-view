@@ -10,14 +10,14 @@ Keeps the application up-to-date with fix and features without manual re-downloa
 
 ## Scope
 
-- Frontend: `src/App.tsx`
+- Frontend: `src/root.tsx`
 - Rust: `N/A`
 - Config: `src-tauri/tauri.conf.json`
 
 ## Implementation anchors
 
 - Files:
-  - `src/App.tsx`
+  - `src/root.tsx`
   - `src-tauri/tauri.conf.json`
 - Key symbols:
   - `tauriUpdater.check()`

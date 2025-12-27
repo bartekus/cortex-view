@@ -28,8 +28,8 @@ Defines the app's identity (name, version), window behavior (hidden by default t
 ## Contract
 
 1. **Build Commands**:
-   - Dev: `pnpm start` at `http://localhost:1420`
-   - Prod: `pnpm build` -> `../build`
+   - Dev: `ppnpm start` at `http://localhost:1420`
+   - Prod: `ppnpm build` -> `../build`
 2. **Window Defaults**:
    - `width`: 1000, `height`: 600
    - `resizable`: true
@@ -43,7 +43,7 @@ Defines the app's identity (name, version), window behavior (hidden by default t
 
 ## Acceptance checks
 
-- [ ] `pnpm tauri dev` launches the application.
+- [ ] `ppnpm tauri dev` launches the application.
 - [ ] Application window is initially hidden and only appears when ready (handled by `TauriProvider`).
 - [ ] Window is resizable.
 

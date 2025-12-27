@@ -10,7 +10,7 @@ Keeps the app accessible even when the main window is closed or minimized.
 
 ## Scope
 
-- Frontend: `src/App.tsx`
+- Frontend: `src/root.tsx`
 - Rust: `src-tauri/src/tray_icon.rs`
 - Config: `N/A`
 
@@ -18,7 +18,7 @@ Keeps the app accessible even when the main window is closed or minimized.
 
 - Files:
   - `src-tauri/src/tray_icon.rs`
-  - `src/App.tsx`
+  - `src/root.tsx`
 - Key symbols:
   - `create_tray_icon`
   - `create_tray_menu`

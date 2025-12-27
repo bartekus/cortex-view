@@ -10,14 +10,14 @@ Indicates activity so the user knows the app hasn't frozen while fetching new vi
 
 ## Scope
 
-- Frontend: `src/App.tsx`, `src/views/FallbackSuspense.tsx`
+- Frontend: `src/root.tsx`, `src/views/FallbackSuspense.tsx`
 - Rust: `N/A`
 - Config: `N/A`
 
 ## Implementation anchors
 
 - Files:
-  - `src/App.tsx`
+  - `src/root.tsx`
   - `src/views/FallbackSuspense.tsx`
 - Key symbols:
   - `Suspense` (React)

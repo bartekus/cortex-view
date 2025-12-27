@@ -10,14 +10,14 @@ Respected user preference for "Focus Mode" (sidebar collapsed) vs "Navigation Mo
 
 ## Scope
 
-- Frontend: `src/App.tsx`, `src/common/utils.ts`
+- Frontend: `src/root.tsx`, `src/common/utils.ts`
 - Rust: `N/A`
 - Config: `N/A`
 
 ## Implementation anchors
 
 - Files:
-  - `src/App.tsx`
+  - `src/root.tsx`
   - `src/common/utils.ts`
 - Key symbols:
   - `useCookie`
