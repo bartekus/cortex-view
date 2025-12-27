@@ -1,18 +1,40 @@
 # UI Shell Contract (UI_SHELL_CONTRACT)
 
-## Summary
+## Overview
 
-The top-level layout component (`Layout` in `root.tsx`) governing the responsive structure of the application.
+The "Shell" is the persistent frame of the application, typically containing global navigation, header, and footer. In RRv7, this is physically part of the `src/root.tsx` component (the root layout).
 
-## User value
+## Shell Structure
 
-Provides a consistent, responsive container for navigation and content, adapting to mobile and desktop screens.
+The `root.tsx` default export renders the following hierarchy:
 
-## Scope
+1. **Document Root**: `<html>`, `<head>`, `<body>`.
+2. **Context Providers**: Global providers (Theme, etc.) wrapping the app content.
+3. **App Shell**:
+   - **Sidebar** (collapsible, navigation).
+   - **Header** (top bar, breadcrumbs, window controls).
+   - **Main Content Area** (`<main>`).
+     - **Outlet**: The `<Outlet />` component where specific route views are rendered.
+   - **Footer** (status bar, optional).
 
-- Frontend: `src/root.tsx`
-- Rust: `N/A`
-- Config: `N/A`
+## Implementation Details
+
+- **File**: `src/root.tsx`.
+- **Composition**: The Shell should likely use CSS Grid or Flexbox to arrange the Sidebar and Main area.
+- **Scroll Behavior**:
+  - The **Main Content Area** should be the primary scroll container.
+  - Sidebar should stay fixed or have independent scroll.
+  - `ScrollRestoration` should manage scroll position of the main area.
+
+## Key Components
+
+- `<Sidebar />`: Navigation menu.
+- `<Header />`: App title, tools.
+- `<Outlet />`: From `react-router`, renders the child route.
+
+## Obsolete
+
+- `src/components/Layout.tsx`: Previously the shell container; now logic often lives in `root.tsx` or a dedicated `src/components/AppShell.tsx` imported by `root.tsx`.
 
 ## Implementation anchors
 
@@ -21,8 +43,8 @@ Provides a consistent, responsive container for navigation and content, adapting
 - Key symbols:
   - `Layout` (Function Component)
   - `Meta`, `Links`, `Scripts`, `ScrollRestoration`
-  - `AppShell` (Mantine - *To be implemented*)
-  - `Navbar`, `Header` (*To be implemented*)
+  - `AppShell` (Mantine - _To be implemented_)
+  - `Navbar`, `Header` (_To be implemented_)
 - Events:
   - `N/A`
 

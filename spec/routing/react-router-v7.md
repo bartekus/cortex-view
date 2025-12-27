@@ -8,25 +8,43 @@ Client-side routing configuration using React Router v7 Config Validation.
 
 Deep linking, browser history support (Back/Forward), and URL-driven state.
 
-## Scope
+# React Router v7 Specification
 
-- Frontend: `src/routes.ts`, `src/root.tsx`, `src/routes/*`
-- Rust: `N/A`
-- Config: `react-router.config.ts` (if applicable)
+## Routing Strategy
 
-## Implementation anchors
+The application uses **React Router v7** with **config-based routing** defined in `src/routes.ts`.
 
-- Files:
-  - `src/routes.ts` (Route definitions)
-  - `src/root.tsx` (Root layout)
-- Key symbols:
-  - `RouteConfig`
-  - `index`, `layout`, `route` (Route helpers)
-  - `Outlet` (Layout placeholder)
-- Events:
-  - `N/A`
+## Configuration Anchor
 
-## Contract
+- **File**: `src/routes.ts`
+- **Library**: `@react-router/dev/routes`
+- **Format**: Declarative route hierarchy.
+
+## Route Definition Pattern
+
+Routes are defined using the `route`, `index`, `layout`, and `prefix` helpers from `@react-router/dev/routes`.
+
+```typescript
+import { type RouteConfig, index, route, layout } from "@react-router/dev/routes";
+
+export default [layout("layouts/sidebar.tsx", [index("routes/home.tsx"), route("about", "routes/about.tsx")])] satisfies RouteConfig;
+```
+
+## File Conventions
+
+- **Route Modules**: Located in `src/routes/*`.
+- **Layouts**: Located in `src/layouts/*` or `src/routes/*` (if specific to a route segment).
+- **Naming**: File names typically mirror the route path (e.g., `routes/settings/profile.tsx`).
+
+## Navigation & Linking
+
+- Use `<Link to="...">` or `<NavLink>` from `react-router`.
+- Programmatic navigation via `useNavigate()`.
+- Route IDs should be stable if referenced by logic.
+
+## Verification
+
+- Run `npx react-router routes` to inspect the generated route tree.
 
 1.  **Router Config**:
     - Routes are defined in `src/routes.ts` exporting `RouteConfig`.

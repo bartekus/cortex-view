@@ -2,8 +2,8 @@
 
 ## System
 
-| Feature ID             | Anchors                                                            |
-| ---------------------- | ------------------------------------------------------------------ |
+| Feature ID        | Anchors                                                            |
+| ----------------- | ------------------------------------------------------------------ |
 | **REPO_CONTRACT** | `spec/reverse-engineering/repo-map.md`                             |
 | **APP_BOOT**      | `src/root.tsx` (`Layout`, `ErrorBoundary`), `src/routes.ts`        |
 | **RUNTIME_MODE**  | `isTauri()` usage in `src/root.tsx`, `src/tauri/TauriProvider.tsx` |
@@ -29,8 +29,8 @@
 
 ## i18n
 
-| Feature ID                    | Anchors                                                         |
-| ----------------------------- | --------------------------------------------------------------- |
+| Feature ID               | Anchors                                                         |
+| ------------------------ | --------------------------------------------------------------- |
 | **I18N_SETUP**           | `src/translations/i18n.ts` (`i18next.init`, `LanguageDetector`) |
 | **I18N_TYPES**           | `src/i18next.d.ts` (CustomTypeOptions)                          |
 | **I18N_LANGUAGE_SWITCH** | `src/components/LanguageHeaders.tsx`                            |
@@ -38,28 +38,35 @@
 
 ## State / Persistence
 
-| Feature ID                        | Anchors                                             |
-| --------------------------------- | --------------------------------------------------- |
+| Feature ID                   | Anchors                                             |
+| ---------------------------- | --------------------------------------------------- |
 | **PERSIST_LOCALFORAGE_HOOK** | `src/common/utils.ts` (`useLocalForage`)            |
 | **PERSIST_COOKIE**           | `src/common/utils.ts` (`useCookie`)                 |
 | **STORAGE_ABSTRACTION**      | `src/tauri/storage.ts` (Store vs localforage logic) |
 
 ## Tauri
 
-| Feature ID                         | Anchors                                                                                           |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------- |
-| **TAURI_CONFIG**              | `src-tauri/tauri.conf.json`                                                                       |
-| **TAURI_CAPABILITIES**        | `src-tauri/capabilities/desktop.json`, `src-tauri/capabilities/migrated.json`                     |
-| **TAURI_LOGGING**             | `src-tauri/src/lib.rs` (`tauri_plugin_log`), `src/root.tsx` (`tauriLogger.error`)                 |
-| **TAURI_SINGLE_INSTANCE**     | `src-tauri/src/lib.rs` (`tauri_plugin_single_instance`), `src/root.tsx` (`newInstance` listener)  |
-| **TAURI_TRAY_MENU**           | `src-tauri/src/tray_icon.rs`, `src/root.tsx` (`systemTray` listener)                              |
-| **TAURI_LONG_RUNNING_THREAD** | `src-tauri/src/utils.rs` (`long_running_thread`), `src/root.tsx` (`longRunningThread` listener)   |
-| **TAURI_UPDATER_UI**          | `src/root.tsx` (`tauriUpdater.check`), `src-tauri/tauri.conf.json` (Updater plugin)               |
-| **TAURI_NOTIFICATIONS_UI**    | `src/root.tsx` (`notifications.show` calls)                                                       |
-| **TAURI_WINDOW_STATE_PLUGIN** | `src-tauri/src/lib.rs` (`tauri_plugin_window_state`)                                              |
-| **TAURI_STORE_PLUGIN**        | `src-tauri/src/lib.rs` (`tauri_plugin_store`)                                                     |
-| **TAURI_PROVIDER_CONTEXT**    | `src/tauri/TauriProvider.tsx` (`TauriContext`, `getUserAppFiles`)                                 |
-| **TAURI_CUSTOM_TITLEBAR**     | `src/tauri/TitleBar.tsx`, `src/tauri/TauriProvider.tsx` (`WIN32_CUSTOM_TITLEBAR`)                 |
-| **TAURI_FS_ENUM_APPFILES**    | `src/tauri/TauriProvider.tsx` (`getUserAppFiles`)                                                 |
-| **TAURI_MIN_WIDTH**           | `src/tauri/TauriProvider.tsx` (`useMinWidth`)                                                     |
-| **TAURI_IPC_COMMANDS**        | `src-tauri/src/lib.rs` (`tray_update_lang`, `process_file`)                                       |
+| Feature ID | Anchors |
+
+# Codebase Anchors
+
+This file maps abstract system concepts to concrete files.
+
+| Concept | File / Anchor | logic |
+| source of truth | `spec/features.yaml` | Feature Registry |
+| **Boot Entry** | `src/entry.client.tsx` | Hydrates the app |
+| **App Root** | `src/root.tsx` | Main Layout & Providers |
+| **Routing Config** | `src/routes.ts` | Route table definition |
+| **Tauri Config** | `src-tauri/tauri.conf.json` | Platform config |
+| **Tauri Entry** | `src-tauri/src/lib.rs` | Rust entry point |
+| **Global Styles** | `src/root.tsx` (links) | Usage of `app.css` / Tailwind |
+| **Shell Component** | `src/root.tsx` | Top-level layout structure |
+| **TAURI_UPDATER_UI** | `src/root.tsx` (`tauriUpdater.check`), `src-tauri/tauri.conf.json` (Updater plugin) |
+| **TAURI_NOTIFICATIONS_UI** | `src/root.tsx` (`notifications.show` calls) |
+| **TAURI_WINDOW_STATE_PLUGIN** | `src-tauri/src/lib.rs` (`tauri_plugin_window_state`) |
+| **TAURI_STORE_PLUGIN** | `src-tauri/src/lib.rs` (`tauri_plugin_store`) |
+| **TAURI_PROVIDER_CONTEXT** | `src/tauri/TauriProvider.tsx` (`TauriContext`, `getUserAppFiles`) |
+| **TAURI_CUSTOM_TITLEBAR** | `src/tauri/TitleBar.tsx`, `src/tauri/TauriProvider.tsx` (`WIN32_CUSTOM_TITLEBAR`) |
+| **TAURI_FS_ENUM_APPFILES** | `src/tauri/TauriProvider.tsx` (`getUserAppFiles`) |
+| **TAURI_MIN_WIDTH** | `src/tauri/TauriProvider.tsx` (`useMinWidth`) |
+| **TAURI_IPC_COMMANDS** | `src-tauri/src/lib.rs` (`tray_update_lang`, `process_file`) |

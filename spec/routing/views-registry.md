@@ -18,7 +18,7 @@ DRY (Don't Repeat Yourself) - Adding a page once adds it to both routing and nav
 
 - Files:
   - `src/routes.ts`
-  - `src/lib/views.ts` (*To be implemented*)
+  - `src/lib/views.ts` (_To be implemented_)
 - Key symbols:
   - `interface View`
   - `const views: View[]`
@@ -34,7 +34,7 @@ DRY (Don't Repeat Yourself) - Adding a page once adds it to both routing and nav
 2.  **Usage**:
     - **Routing**: `routes.ts` imports view modules directly.
     - **Navigation**: Sidebar maps over `views` array to generate `<NavLink>`.
-    - *Note*: In RRv7, "Routing" and "Navigation" are slightly decoupled. `routes.ts` defines valid URLs; `views` registry defines the Menu.
+    - _Note_: In RRv7, "Routing" and "Navigation" are slightly decoupled. `routes.ts` defines valid URLs; `views` registry defines the Menu.
 
 ## Acceptance checks
 

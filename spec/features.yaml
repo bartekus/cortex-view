@@ -11,17 +11,13 @@ features:
     depends_on: []
 
   - id: APP_BOOT
-    title: "App Boot: React root, Providers, i18n init, and top-level ErrorBoundary"
-    governance: draft
-    implementation: planned
+    description: Application initialization and global providers
+    status: pending
     spec: "spec/system/app-boot.md"
-    owner: bart
-    group: core
-    tests: []
-    depends_on:
-      - REPO_CONTRACT
 
   - id: RUNTIME_MODE
+    description: Detection of Web vs Tauri environment
+    status: pending
     title: "Runtime Mode: Tauri detection and conditional behavior (web vs Tauri)"
     governance: draft
     implementation: planned

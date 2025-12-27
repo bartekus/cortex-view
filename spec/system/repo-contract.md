@@ -8,11 +8,48 @@ Establish the repository structure, ownership boundaries, and "web vs desktop" h
 
 Ensures the codebase remains navigable and predictable for new contributors, maintaining a clear separation between frontend logic and desktop-specific backend wrapper code.
 
-## Scope
+# Repository Contract
 
-- Frontend: `src/` (React, React-Router v7, Vite, Core logic)
-- Rust: `src-tauri/` (Tauri runtime, plugins, tray)
-- Config: `package.json`, `src-tauri/tauri.conf.json`
+## Directory Structure
+
+The repository follows a hybrid React + Rust (Tauri) structure.
+
+### Root
+
+- `package.json`: Node dependencies and scripts.
+- `src-tauri/`: Rust backend and Tauri configuration.
+- `src/`: Frontend source code.
+- `spec/`: Documentation and specifications.
+- `vite.config.ts`: Vite build config.
+- `tsconfig.json`: TypeScript config.
+
+### Frontend (`src/`)
+
+- `root.tsx`: App root layout and entry point.
+- `routes.ts`: Route configuration.
+- `entry.client.tsx`: Client hydration entry.
+- `components/`: UI components (e.g. `ui/` for shadcn).
+- `lib/`: Utilities (`utils.ts`).
+- `routes/`: Page views and route modules.
+
+### Backend (`src-tauri/`)
+
+- `Cargo.toml`: Rust dependencies.
+- `tauri.conf.json`: Tauri configuration.
+- `src/main.rs`: Rust entry point.
+- `src/lib.rs`: Shared Rust logic (commands, etc.).
+
+## Crucial Files (Anchors)
+
+- **Frontend Entry**: `src/entry.client.tsx` -> `src/root.tsx`
+- **Routing**: `src/routes.ts`
+- **Tauri Config**: `src-tauri/tauri.conf.json`
+- **Spec Registry**: `spec/features.yaml`
+
+## Invariants
+
+- Frontend code must explicitly separate Web logic from Tauri-only logic where necessary.
+- Specs in `spec/` must reflect the code in `src/` and `src-tauri/`.
 
 ## Implementation anchors
 
