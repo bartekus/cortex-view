@@ -2,28 +2,32 @@ features:
   # --- Core System ---
   - id: REPO_CONTRACT
     title: "Repository Contract: MDAT structure, entrypoints, and runtime split (webview vs rust)"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/system/repo-contract.md"
     owner: bart
-    group: core
+    group: system
     tests: []
     depends_on: []
 
   - id: APP_BOOT
     description: Application initialization and global providers
-    status: pending
+    governance: approved
+    implementation: done
     spec: "spec/system/app-boot.md"
+    owner: bart
+    group: system
+    tests: [ ]
+    depends_on:
+      - REPO_CONTRACT
 
   - id: RUNTIME_MODE
-    description: Detection of Web vs Tauri environment
-    status: pending
     title: "Runtime Mode: Tauri detection and conditional behavior (web vs Tauri)"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/system/runtime-mode.md"
     owner: bart
-    group: core
+    group: system
     tests: []
     depends_on:
       - APP_BOOT
@@ -31,8 +35,8 @@ features:
   # --- UI (shadcn/ui + Tailwind) ---
   - id: UI_SHELL_CONTRACT
     title: "UI Shell Contract: Header, Sidebar, Main, Aside, Footer layout primitives"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/ui/shell-contract.md"
     owner: bart
     group: ui
@@ -42,8 +46,8 @@ features:
 
   - id: UI_COMPONENTS_SHADCN
     title: "UI Components: shadcn/ui base component set and styling conventions"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/ui/shadcn-components.md"
     owner: bart
     group: ui
@@ -53,8 +57,8 @@ features:
 
   - id: UI_THEME_CONTRACT
     title: "Theme Contract: light/dark mode, persistence, and hotkey toggle"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/ui/theme-contract.md"
     owner: bart
     group: ui
@@ -64,8 +68,8 @@ features:
 
   - id: UI_THEME_SHADCN_IMPL
     title: "Theme Implementation: Tailwind + CSS variables compatible with shadcn/ui"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/ui/theme-shadcn.md"
     owner: bart
     group: ui
@@ -76,8 +80,8 @@ features:
 
   - id: UI_NAV_STATE
     title: "UI State: Mobile nav disclosure + desktop nav persistence (cookie)"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/ui/nav-state.md"
     owner: bart
     group: ui
@@ -98,8 +102,8 @@ features:
 
   - id: UI_LOADING_STATES
     title: "Loading States: splashscreen and suspense fallback render rules"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/ui/loading-states.md"
     owner: bart
     group: ui
@@ -109,8 +113,8 @@ features:
 
   - id: UI_ERROR_BOUNDARY
     title: "UI Resilience: ErrorBoundary fallback UI and reset behavior"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/ui/error-boundary.md"
     owner: bart
     group: ui
@@ -121,8 +125,8 @@ features:
   # --- Routing (React Router v7) ---
   - id: ROUTING_RR7_CONTRACT
     title: "Routing Contract: React Router v7 route tree, layouts, and navigation model"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/routing/react-router-v7.md"
     owner: bart
     group: routing
@@ -133,8 +137,8 @@ features:
 
   - id: ROUTING_VIEWS_REGISTRY
     title: "Routing: Views registry drives sidebar items and route mapping"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/routing/views-registry.md"
     owner: bart
     group: routing
@@ -145,8 +149,8 @@ features:
 
   - id: ROUTING_LAZY_VIEWS
     title: "Routing: Lazy-loaded views and suspense integration"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/routing/lazy-views.md"
     owner: bart
     group: routing
@@ -158,8 +162,8 @@ features:
   # --- i18n / Localization ---
   - id: I18N_SETUP
     title: "i18n: i18next + react-i18next + language detector with flat JSON keys"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/i18n/setup.md"
     owner: bart
     group: i18n
@@ -169,8 +173,8 @@ features:
 
   - id: I18N_TYPES
     title: "i18n: TypeScript typing via i18next.d.ts CustomTypeOptions"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/i18n/types.md"
     owner: bart
     group: i18n
@@ -180,8 +184,8 @@ features:
 
   - id: I18N_LANGUAGE_SWITCH
     title: "i18n: Language header switcher and hotkey cycling languages"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/i18n/language-switch.md"
     owner: bart
     group: i18n
@@ -192,8 +196,8 @@ features:
 
   - id: I18N_RUST_TRAY_LANG
     title: "i18n: Rust tray menu language update command (tray_update_lang)"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/i18n/rust-tray-lang.md"
     owner: bart
     group: i18n
@@ -204,8 +208,8 @@ features:
   # --- Persistence / Storage ---
   - id: PERSIST_LOCALFORAGE_HOOK
     title: "Persistence: useLocalForage hook used for UI state (footersSeen and similar)"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/state/use-localforage.md"
     owner: bart
     group: state
@@ -215,8 +219,8 @@ features:
 
   - id: PERSIST_COOKIE
     title: "Persistence: Cookie-based desktop navbar open state"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/state/cookie.md"
     owner: bart
     group: state
@@ -226,8 +230,8 @@ features:
 
   - id: STORAGE_ABSTRACTION
     title: "Storage Abstraction: createStorage uses Tauri Store when available else localforage"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/state/create-storage.md"
     owner: bart
     group: state
@@ -239,8 +243,8 @@ features:
   # --- Tauri Platform / Plugins / Capabilities ---
   - id: TAURI_CONFIG
     title: "Tauri Config: tauri.conf.json build, bundling, CSP, window defaults, updater endpoints"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/tauri/config.md"
     owner: bart
     group: tauri
@@ -250,8 +254,8 @@ features:
 
   - id: TAURI_CAPABILITIES
     title: "Tauri Capabilities: desktop.json and migrated.json permissions and scopes"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/tauri/capabilities.md"
     owner: bart
     group: tauri
@@ -261,8 +265,8 @@ features:
 
   - id: TAURI_LOGGING
     title: "Tauri Logging: tauri-plugin-log configured for LogDir and Webview in dev"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/tauri/logging.md"
     owner: bart
     group: tauri
@@ -272,8 +276,8 @@ features:
 
   - id: TAURI_SINGLE_INSTANCE
     title: "Tauri Single Instance: plugin forwards args/cwd to existing instance via newInstance event"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/tauri/single-instance.md"
     owner: bart
     group: tauri
@@ -283,8 +287,8 @@ features:
 
   - id: TAURI_TRAY_MENU
     title: "Tauri Tray: tray icon, menu, events emitted to webview, toggle visibility, quit, icon swap"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/tauri/tray.md"
     owner: bart
     group: tauri
@@ -294,8 +298,8 @@ features:
 
   - id: TAURI_LONG_RUNNING_THREAD
     title: "Tauri Background Task: periodic emitter longRunningThread event from Rust"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/tauri/long-running-thread.md"
     owner: bart
     group: tauri
@@ -306,8 +310,8 @@ features:
 
   - id: TAURI_UPDATER_UI
     title: "Tauri Updater UI: check on mount, show notification, download+install, relaunch"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/tauri/updater-ui.md"
     owner: bart
     group: tauri
@@ -317,8 +321,8 @@ features:
 
   - id: TAURI_NOTIFICATIONS_UI
     title: "Tauri Notifications UI: native notifications for tray events and updater"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/tauri/notifications-ui.md"
     owner: bart
     group: tauri
@@ -328,8 +332,8 @@ features:
 
   - id: TAURI_WINDOW_STATE_PLUGIN
     title: "Tauri Window State: tauri-plugin-window-state for size and position persistence"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/tauri/window-state.md"
     owner: bart
     group: tauri
@@ -339,8 +343,8 @@ features:
 
   - id: TAURI_STORE_PLUGIN
     title: "Tauri Store: tauri-plugin-store enabled for filesystem-backed app storage"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/tauri/store.md"
     owner: bart
     group: tauri
@@ -350,8 +354,8 @@ features:
 
   - id: TAURI_PROVIDER_CONTEXT
     title: "Tauri Provider: React context exposes OS type, dirs, fileSep, fullscreen, scaleFactor"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/tauri/provider-context.md"
     owner: bart
     group: tauri
@@ -362,8 +366,8 @@ features:
 
   - id: TAURI_CUSTOM_TITLEBAR
     title: "Custom Titlebar: Windows-only optional decorations toggle and TitleBar behavior"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/tauri/custom-titlebar.md"
     owner: bart
     group: tauri
@@ -374,8 +378,8 @@ features:
 
   - id: TAURI_FS_ENUM_APPFILES
     title: "Filesystem: enumerate app documents files (getUserAppFiles) with recursive readDir"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/tauri/fs-enum-appfiles.md"
     owner: bart
     group: tauri
@@ -385,8 +389,8 @@ features:
 
   - id: TAURI_MIN_WIDTH
     title: "Window Sizing: enforce min width using logical size conversion via monitor scale factor"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/tauri/min-width.md"
     owner: bart
     group: tauri
@@ -397,8 +401,8 @@ features:
   # --- IPC / Commands ---
   - id: TAURI_IPC_COMMANDS
     title: "IPC Commands: Rust commands tray_update_lang and process_file"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/tauri/ipc-commands.md"
     owner: bart
     group: tauri
@@ -409,8 +413,8 @@ features:
   # --- Reverse Engineering Workflow ---
   - id: REVERSE_ENGINEERING_PROTOCOL
     title: "Reverse Engineering Protocol: extract contracts from MDAT codepaths, then rebuild with RRv7 and shadcn/ui"
-    governance: draft
-    implementation: planned
+    governance: approved
+    implementation: done
     spec: "spec/reverse-engineering/protocol.md"
     owner: bart
     group: core
