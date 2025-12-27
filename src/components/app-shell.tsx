@@ -44,8 +44,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { useTranslation } from "react-i18next";
+import { Languages } from "lucide-react";
+
 function Header({ isSidebarOpen, onToggleSidebar }: { isSidebarOpen: boolean; onToggleSidebar: () => void }) {
   const { theme, setTheme } = useTheme();
+  const { i18n } = useTranslation();
 
   return (
     <header className="flex h-14 items-center justify-between border-b px-4 lg:h-[60px]">
@@ -72,6 +77,19 @@ function Header({ isSidebarOpen, onToggleSidebar }: { isSidebarOpen: boolean; on
       </div>
 
       <div className="flex items-center gap-2">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon">
+              <Languages className="h-[1.2rem] w-[1.2rem]" />
+              <span className="sr-only">Switch language</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem onClick={() => i18n.changeLanguage("en")}>English</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => i18n.changeLanguage("es")}>Español</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
         <Button variant="ghost" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
           <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
