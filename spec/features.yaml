@@ -410,6 +410,21 @@ features:
     depends_on:
       - TAURI_CONFIG
 
+  # --- Routing (React Router v7) ---
+  - id: CORTEX_MCP_UI_INTEGRATION
+    title: "Cortex-MCP: UI for 'Snapshot' and 'Worktree' modes"
+    governance: approved
+    implementation: done
+    spec: "spec/cortex-mcp/ui-integration-guide.md"
+    owner: bart
+    group: 'cortex-mcp'
+    tests: [ ]
+    depends_on:
+      - APP_BOOT
+      - TAURI_CONFIG
+      - UI_SHELL_CONTRACT
+      - TAURI_IPC_COMMANDS
+
   # --- Reverse Engineering Workflow ---
   - id: REVERSE_ENGINEERING_PROTOCOL
     title: "Reverse Engineering Protocol: extract contracts from MDAT codepaths, then rebuild with RRv7 and shadcn/ui"

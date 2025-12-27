@@ -1,6 +1,11 @@
 mod tray_icon;
 use tauri::Manager;
 
+#[tauri::command]
+fn greet(name: &str) -> String {
+    format!("Hello, {}! You've been greeted from Rust!", name)
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -21,7 +26,8 @@ pub fn run() {
         })
         .invoke_handler(tauri::generate_handler![
             tray_icon::process_file,
-            tray_icon::tray_update_lang
+            tray_icon::tray_update_lang,
+            greet
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
