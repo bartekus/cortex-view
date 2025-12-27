@@ -82,6 +82,8 @@ function Header({ isSidebarOpen, onToggleSidebar }: { isSidebarOpen: boolean; on
   );
 }
 
+import { VIEW_REGISTRY } from "@/lib/views";
+
 function SidebarContent() {
   const location = useLocation();
 
@@ -95,9 +97,12 @@ function SidebarContent() {
       </div>
       <ScrollArea className="flex-1">
         <nav className="grid gap-1 p-2 text-sm font-medium">
-          <NavLink to="/" active={location.pathname === "/"}>
-            Home
-          </NavLink>
+          {VIEW_REGISTRY.map((view) => (
+            <NavLink key={view.id} to={view.path} active={location.pathname === view.path}>
+              {view.icon && <view.icon className="h-4 w-4" />}
+              {view.label}
+            </NavLink>
+          ))}
         </nav>
       </ScrollArea>
       <div className="p-4 border-t">
