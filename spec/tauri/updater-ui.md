@@ -1,4 +1,4 @@
-# Tauri Updater UI (MDAT_TAURI_UPDATER_UI)
+# Tauri Updater UI (TAURI_UPDATER_UI)
 
 ## Summary
 

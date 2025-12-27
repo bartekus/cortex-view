@@ -1,4 +1,4 @@
-# Reverse Engineering Protocol (MDAT_REVERSE_ENGINEERING_PROTOCOL)
+# Reverse Engineering Protocol (REVERSE_ENGINEERING_PROTOCOL)
 
 ## Summary
 

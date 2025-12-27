@@ -1,4 +1,4 @@
-# i18n Setup (MDAT_I18N_SETUP)
+# i18n Setup (I18N_SETUP)
 
 ## Summary
 

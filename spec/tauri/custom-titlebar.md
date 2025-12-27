@@ -1,4 +1,4 @@
-# Custom Titlebar (MDAT_TAURI_CUSTOM_TITLEBAR)
+# Custom Titlebar (TAURI_CUSTOM_TITLEBAR)
 
 ## Summary
 

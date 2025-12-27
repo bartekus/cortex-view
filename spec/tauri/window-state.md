@@ -1,4 +1,4 @@
-# Tauri Window State (MDAT_TAURI_WINDOW_STATE_PLUGIN)
+# Tauri Window State (TAURI_WINDOW_STATE_PLUGIN)
 
 ## Summary
 

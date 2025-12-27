@@ -1,4 +1,4 @@
-# Persistence: LocalForage (MDAT_PERSIST_LOCALFORAGE_HOOK)
+# Persistence: LocalForage (PERSIST_LOCALFORAGE_HOOK)
 
 ## Summary
 

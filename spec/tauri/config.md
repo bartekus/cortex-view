@@ -1,4 +1,4 @@
-# Tauri Config (MDAT_TAURI_CONFIG)
+# Tauri Config (TAURI_CONFIG)
 
 ## Summary
 

@@ -1,4 +1,4 @@
-# Persistence: Cookie (MDAT_PERSIST_COOKIE)
+# Persistence: Cookie (PERSIST_COOKIE)
 
 ## Summary
 

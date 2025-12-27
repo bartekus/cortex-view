@@ -1,4 +1,4 @@
-# i18n Types (MDAT_I18N_TYPES)
+# i18n Types (I18N_TYPES)
 
 ## Summary
 

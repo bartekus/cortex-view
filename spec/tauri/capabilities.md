@@ -1,4 +1,4 @@
-# Tauri Capabilities (MDAT_TAURI_CAPABILITIES)
+# Tauri Capabilities (TAURI_CAPABILITIES)
 
 ## Summary
 

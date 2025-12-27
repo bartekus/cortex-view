@@ -1,4 +1,4 @@
-# Storage Abstraction (MDAT_STORAGE_ABSTRACTION)
+# Storage Abstraction (STORAGE_ABSTRACTION)
 
 ## Summary
 

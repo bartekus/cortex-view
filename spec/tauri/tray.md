@@ -1,4 +1,4 @@
-# Tauri Tray (MDAT_TAURI_TRAY_MENU)
+# Tauri Tray (TAURI_TRAY_MENU)
 
 ## Summary
 

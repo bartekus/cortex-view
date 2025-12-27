@@ -1,4 +1,4 @@
-# IPC Commands (MDAT_TAURI_IPC_COMMANDS)
+# IPC Commands (TAURI_IPC_COMMANDS)
 
 ## Summary
 

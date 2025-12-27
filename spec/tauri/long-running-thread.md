@@ -1,4 +1,4 @@
-# Tauri Background Task (MDAT_TAURI_LONG_RUNNING_THREAD)
+# Tauri Background Task (TAURI_LONG_RUNNING_THREAD)
 
 ## Summary
 

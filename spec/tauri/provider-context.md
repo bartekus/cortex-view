@@ -1,4 +1,4 @@
-# Tauri Provider Context (MDAT_TAURI_PROVIDER_CONTEXT)
+# Tauri Provider Context (TAURI_PROVIDER_CONTEXT)
 
 ## Summary
 

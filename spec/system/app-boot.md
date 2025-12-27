@@ -1,4 +1,4 @@
-# App Boot (MDAT_APP_BOOT)
+# App Boot (APP_BOOT)
 
 ## Summary
 

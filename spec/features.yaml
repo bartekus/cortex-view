@@ -1,6 +1,6 @@
 features:
   # --- Core System ---
-  - id: MDAT_REPO_CONTRACT
+  - id: REPO_CONTRACT
     title: "Repository Contract: MDAT structure, entrypoints, and runtime split (webview vs rust)"
     governance: draft
     implementation: planned
@@ -10,7 +10,7 @@ features:
     tests: []
     depends_on: []
 
-  - id: MDAT_APP_BOOT
+  - id: APP_BOOT
     title: "App Boot: React root, Providers, i18n init, and top-level ErrorBoundary"
     governance: draft
     implementation: planned
@@ -19,9 +19,9 @@ features:
     group: core
     tests: []
     depends_on:
-      - MDAT_REPO_CONTRACT
+      - REPO_CONTRACT
 
-  - id: MDAT_RUNTIME_MODE
+  - id: RUNTIME_MODE
     title: "Runtime Mode: Tauri detection and conditional behavior (web vs Tauri)"
     governance: draft
     implementation: planned
@@ -30,7 +30,7 @@ features:
     group: core
     tests: []
     depends_on:
-      - MDAT_APP_BOOT
+      - APP_BOOT
 
   # --- UI (shadcn/ui + Tailwind) ---
   - id: UI_SHELL_CONTRACT
@@ -42,7 +42,7 @@ features:
     group: ui
     tests: []
     depends_on:
-      - MDAT_APP_BOOT
+      - APP_BOOT
 
   - id: UI_COMPONENTS_SHADCN
     title: "UI Components: shadcn/ui base component set and styling conventions"
@@ -64,7 +64,7 @@ features:
     group: ui
     tests: []
     depends_on:
-      - MDAT_APP_BOOT
+      - APP_BOOT
 
   - id: UI_THEME_SHADCN_IMPL
     title: "Theme Implementation: Tailwind + CSS variables compatible with shadcn/ui"
@@ -132,7 +132,7 @@ features:
     group: routing
     tests: []
     depends_on:
-      - MDAT_APP_BOOT
+      - APP_BOOT
       - UI_SHELL_CONTRACT
 
   - id: ROUTING_VIEWS_REGISTRY
@@ -160,7 +160,7 @@ features:
       - UI_LOADING_STATES
 
   # --- i18n / Localization ---
-  - id: MDAT_I18N_SETUP
+  - id: I18N_SETUP
     title: "i18n: i18next + react-i18next + language detector with flat JSON keys"
     governance: draft
     implementation: planned
@@ -169,9 +169,9 @@ features:
     group: i18n
     tests: []
     depends_on:
-      - MDAT_APP_BOOT
+      - APP_BOOT
 
-  - id: MDAT_I18N_TYPES
+  - id: I18N_TYPES
     title: "i18n: TypeScript typing via i18next.d.ts CustomTypeOptions"
     governance: draft
     implementation: planned
@@ -180,9 +180,9 @@ features:
     group: i18n
     tests: []
     depends_on:
-      - MDAT_I18N_SETUP
+      - I18N_SETUP
 
-  - id: MDAT_I18N_LANGUAGE_SWITCH
+  - id: I18N_LANGUAGE_SWITCH
     title: "i18n: Language header switcher and hotkey cycling languages"
     governance: draft
     implementation: planned
@@ -191,10 +191,10 @@ features:
     group: i18n
     tests: []
     depends_on:
-      - MDAT_I18N_SETUP
+      - I18N_SETUP
       - UI_SHELL_CONTRACT
 
-  - id: MDAT_I18N_RUST_TRAY_LANG
+  - id: I18N_RUST_TRAY_LANG
     title: "i18n: Rust tray menu language update command (tray_update_lang)"
     governance: draft
     implementation: planned
@@ -203,10 +203,10 @@ features:
     group: i18n
     tests: []
     depends_on:
-      - MDAT_TAURI_TRAY_MENU
+      - TAURI_TRAY_MENU
 
   # --- Persistence / Storage ---
-  - id: MDAT_PERSIST_LOCALFORAGE_HOOK
+  - id: PERSIST_LOCALFORAGE_HOOK
     title: "Persistence: useLocalForage hook used for UI state (footersSeen and similar)"
     governance: draft
     implementation: planned
@@ -217,7 +217,7 @@ features:
     depends_on:
       - UI_SHELL_CONTRACT
 
-  - id: MDAT_PERSIST_COOKIE
+  - id: PERSIST_COOKIE
     title: "Persistence: Cookie-based desktop navbar open state"
     governance: draft
     implementation: planned
@@ -228,7 +228,7 @@ features:
     depends_on:
       - UI_NAV_STATE
 
-  - id: MDAT_STORAGE_ABSTRACTION
+  - id: STORAGE_ABSTRACTION
     title: "Storage Abstraction: createStorage uses Tauri Store when available else localforage"
     governance: draft
     implementation: planned
@@ -237,11 +237,11 @@ features:
     group: state
     tests: []
     depends_on:
-      - MDAT_RUNTIME_MODE
-      - MDAT_TAURI_STORE_PLUGIN
+      - RUNTIME_MODE
+      - TAURI_STORE_PLUGIN
 
   # --- Tauri Platform / Plugins / Capabilities ---
-  - id: MDAT_TAURI_CONFIG
+  - id: TAURI_CONFIG
     title: "Tauri Config: tauri.conf.json build, bundling, CSP, window defaults, updater endpoints"
     governance: draft
     implementation: planned
@@ -250,9 +250,9 @@ features:
     group: tauri
     tests: []
     depends_on:
-      - MDAT_REPO_CONTRACT
+      - REPO_CONTRACT
 
-  - id: MDAT_TAURI_CAPABILITIES
+  - id: TAURI_CAPABILITIES
     title: "Tauri Capabilities: desktop.json and migrated.json permissions and scopes"
     governance: draft
     implementation: planned
@@ -261,9 +261,9 @@ features:
     group: tauri
     tests: []
     depends_on:
-      - MDAT_TAURI_CONFIG
+      - TAURI_CONFIG
 
-  - id: MDAT_TAURI_LOGGING
+  - id: TAURI_LOGGING
     title: "Tauri Logging: tauri-plugin-log configured for LogDir and Webview in dev"
     governance: draft
     implementation: planned
@@ -272,9 +272,9 @@ features:
     group: tauri
     tests: []
     depends_on:
-      - MDAT_TAURI_CONFIG
+      - TAURI_CONFIG
 
-  - id: MDAT_TAURI_SINGLE_INSTANCE
+  - id: TAURI_SINGLE_INSTANCE
     title: "Tauri Single Instance: plugin forwards args/cwd to existing instance via newInstance event"
     governance: draft
     implementation: planned
@@ -283,9 +283,9 @@ features:
     group: tauri
     tests: []
     depends_on:
-      - MDAT_TAURI_CONFIG
+      - TAURI_CONFIG
 
-  - id: MDAT_TAURI_TRAY_MENU
+  - id: TAURI_TRAY_MENU
     title: "Tauri Tray: tray icon, menu, events emitted to webview, toggle visibility, quit, icon swap"
     governance: draft
     implementation: planned
@@ -294,9 +294,9 @@ features:
     group: tauri
     tests: []
     depends_on:
-      - MDAT_TAURI_CONFIG
+      - TAURI_CONFIG
 
-  - id: MDAT_TAURI_LONG_RUNNING_THREAD
+  - id: TAURI_LONG_RUNNING_THREAD
     title: "Tauri Background Task: periodic emitter longRunningThread event from Rust"
     governance: draft
     implementation: planned
@@ -305,10 +305,10 @@ features:
     group: tauri
     tests: []
     depends_on:
-      - MDAT_TAURI_CONFIG
-      - MDAT_TAURI_LOGGING
+      - TAURI_CONFIG
+      - TAURI_LOGGING
 
-  - id: MDAT_TAURI_UPDATER_UI
+  - id: TAURI_UPDATER_UI
     title: "Tauri Updater UI: check on mount, show notification, download+install, relaunch"
     governance: draft
     implementation: planned
@@ -317,9 +317,9 @@ features:
     group: tauri
     tests: []
     depends_on:
-      - MDAT_TAURI_CONFIG
+      - TAURI_CONFIG
 
-  - id: MDAT_TAURI_NOTIFICATIONS_UI
+  - id: TAURI_NOTIFICATIONS_UI
     title: "Tauri Notifications UI: native notifications for tray events and updater"
     governance: draft
     implementation: planned
@@ -328,9 +328,9 @@ features:
     group: tauri
     tests: []
     depends_on:
-      - MDAT_TAURI_CONFIG
+      - TAURI_CONFIG
 
-  - id: MDAT_TAURI_WINDOW_STATE_PLUGIN
+  - id: TAURI_WINDOW_STATE_PLUGIN
     title: "Tauri Window State: tauri-plugin-window-state for size and position persistence"
     governance: draft
     implementation: planned
@@ -339,9 +339,9 @@ features:
     group: tauri
     tests: []
     depends_on:
-      - MDAT_TAURI_CONFIG
+      - TAURI_CONFIG
 
-  - id: MDAT_TAURI_STORE_PLUGIN
+  - id: TAURI_STORE_PLUGIN
     title: "Tauri Store: tauri-plugin-store enabled for filesystem-backed app storage"
     governance: draft
     implementation: planned
@@ -350,9 +350,9 @@ features:
     group: tauri
     tests: []
     depends_on:
-      - MDAT_TAURI_CONFIG
+      - TAURI_CONFIG
 
-  - id: MDAT_TAURI_PROVIDER_CONTEXT
+  - id: TAURI_PROVIDER_CONTEXT
     title: "Tauri Provider: React context exposes OS type, dirs, fileSep, fullscreen, scaleFactor"
     governance: draft
     implementation: planned
@@ -361,10 +361,10 @@ features:
     group: tauri
     tests: []
     depends_on:
-      - MDAT_RUNTIME_MODE
-      - MDAT_TAURI_CONFIG
+      - RUNTIME_MODE
+      - TAURI_CONFIG
 
-  - id: MDAT_TAURI_CUSTOM_TITLEBAR
+  - id: TAURI_CUSTOM_TITLEBAR
     title: "Custom Titlebar: Windows-only optional decorations toggle and TitleBar behavior"
     governance: draft
     implementation: planned
@@ -373,10 +373,10 @@ features:
     group: tauri
     tests: []
     depends_on:
-      - MDAT_TAURI_PROVIDER_CONTEXT
+      - TAURI_PROVIDER_CONTEXT
       - UI_SHELL_CONTRACT
 
-  - id: MDAT_TAURI_FS_ENUM_APPFILES
+  - id: TAURI_FS_ENUM_APPFILES
     title: "Filesystem: enumerate app documents files (getUserAppFiles) with recursive readDir"
     governance: draft
     implementation: planned
@@ -385,9 +385,9 @@ features:
     group: tauri
     tests: []
     depends_on:
-      - MDAT_TAURI_PROVIDER_CONTEXT
+      - TAURI_PROVIDER_CONTEXT
 
-  - id: MDAT_TAURI_MIN_WIDTH
+  - id: TAURI_MIN_WIDTH
     title: "Window Sizing: enforce min width using logical size conversion via monitor scale factor"
     governance: draft
     implementation: planned
@@ -396,10 +396,10 @@ features:
     group: tauri
     tests: []
     depends_on:
-      - MDAT_TAURI_PROVIDER_CONTEXT
+      - TAURI_PROVIDER_CONTEXT
 
   # --- IPC / Commands ---
-  - id: MDAT_TAURI_IPC_COMMANDS
+  - id: TAURI_IPC_COMMANDS
     title: "IPC Commands: Rust commands tray_update_lang and process_file"
     governance: draft
     implementation: planned
@@ -408,10 +408,10 @@ features:
     group: tauri
     tests: []
     depends_on:
-      - MDAT_TAURI_CONFIG
+      - TAURI_CONFIG
 
   # --- Reverse Engineering Workflow ---
-  - id: MDAT_REVERSE_ENGINEERING_PROTOCOL
+  - id: REVERSE_ENGINEERING_PROTOCOL
     title: "Reverse Engineering Protocol: extract contracts from MDAT codepaths, then rebuild with RRv7 and shadcn/ui"
     governance: draft
     implementation: planned
@@ -420,8 +420,8 @@ features:
     group: core
     tests: []
     depends_on:
-      - MDAT_REPO_CONTRACT
-      - MDAT_APP_BOOT
-      - MDAT_TAURI_CONFIG
+      - REPO_CONTRACT
+      - APP_BOOT
+      - TAURI_CONFIG
       - UI_SHELL_CONTRACT
       - ROUTING_RR7_CONTRACT

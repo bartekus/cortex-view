@@ -1,4 +1,4 @@
-# i18n Rust Tray Lang (MDAT_I18N_RUST_TRAY_LANG)
+# i18n Rust Tray Lang (I18N_RUST_TRAY_LANG)
 
 ## Summary
 

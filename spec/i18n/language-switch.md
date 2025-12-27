@@ -1,4 +1,4 @@
-# i18n Language Switch (MDAT_I18N_LANGUAGE_SWITCH)
+# i18n Language Switch (I18N_LANGUAGE_SWITCH)
 
 ## Summary
 

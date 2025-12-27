@@ -1,4 +1,4 @@
-# Tauri Logging (MDAT_TAURI_LOGGING)
+# Tauri Logging (TAURI_LOGGING)
 
 ## Summary
 

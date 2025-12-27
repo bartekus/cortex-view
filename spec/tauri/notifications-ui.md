@@ -1,4 +1,4 @@
-# Tauri Notifications UI (MDAT_TAURI_NOTIFICATIONS_UI)
+# Tauri Notifications UI (TAURI_NOTIFICATIONS_UI)
 
 ## Summary
 

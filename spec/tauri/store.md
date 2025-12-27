@@ -1,4 +1,4 @@
-# Tauri Store (MDAT_TAURI_STORE_PLUGIN)
+# Tauri Store (TAURI_STORE_PLUGIN)
 
 ## Summary
 

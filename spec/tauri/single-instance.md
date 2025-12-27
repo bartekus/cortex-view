@@ -1,4 +1,4 @@
-# Tauri Single Instance (MDAT_TAURI_SINGLE_INSTANCE)
+# Tauri Single Instance (TAURI_SINGLE_INSTANCE)
 
 ## Summary
 

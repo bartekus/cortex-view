@@ -1,4 +1,4 @@
-# Repository Contract (MDAT_REPO_CONTRACT)
+# Repository Contract (REPO_CONTRACT)
 
 ## Summary
 

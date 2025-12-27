@@ -1,4 +1,4 @@
-# Runtime Mode (MDAT_RUNTIME_MODE)
+# Runtime Mode (RUNTIME_MODE)
 
 ## Summary
 

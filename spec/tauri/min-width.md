@@ -1,4 +1,4 @@
-# Window Min-Width (MDAT_TAURI_MIN_WIDTH)
+# Window Min-Width (TAURI_MIN_WIDTH)
 
 ## Summary
 
