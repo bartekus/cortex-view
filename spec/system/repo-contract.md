@@ -29,8 +29,12 @@ The repository follows a hybrid React + Rust (Tauri) structure.
 - `routes.ts`: Route configuration.
 - `entry.client.tsx`: Client hydration entry.
 - `components/`: UI components (e.g. `ui/` for shadcn).
+- `hooks/`: React hooks
 - `lib/`: Utilities (`utils.ts`).
 - `routes/`: Page views and route modules.
+- `index.css`: Tailwindcss main file
+- `i18next.d.ts`: i18next custom types
+- `vite-env.d.ts`: Vite env types
 
 ### Backend (`src-tauri/`)
 
@@ -54,7 +58,6 @@ The repository follows a hybrid React + Rust (Tauri) structure.
 ## Implementation anchors
 
 - Files:
-  - `spec/reverse-engineering/repo-map.md` (Detailed map)
   - `src/root.tsx` (Frontend Entrypoint)
   - `src-tauri/src/lib.rs` (Backend entry)
 - Key symbols:
@@ -72,7 +75,7 @@ The repository follows a hybrid React + Rust (Tauri) structure.
    - `src-tauri/` MUST contain all Rust platform code and build configuration.
    - `src/tauri/` (in frontend) MUST contain the React-side interface to Tauri APIs.
 3. **Entrypoints**:
-   - Web: `index.html` -> `src/root.tsx` (via React Router)
+   - Web: `src/entry.client.tsx` -> `src/root.tsx` (via React Router)
    - Desktop: `src-tauri/src/lib.rs` (via `run()`)
 
 ## Acceptance checks

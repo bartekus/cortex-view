@@ -28,14 +28,9 @@ The application boot sequence is governed by **React Router v7** (RRv7) + **Vite
   - `startTransition` and `hydrateRoot`.
   - Wrapping standard React Router hydration logic.
 
-### 3. Server Rendering (Optional/Future)
-
-- **File**: `src/entry.server.tsx` (if SSR is enabled)
-- **Role**: Handles server-side request processing.
-
 ## Initialization Sequence
 
-1. **Vite** serves `index.html` (or processes request via SSR).
+1. **Vite** serves react-router generated client bundle.
 2. **React Router** matches the URL against `src/routes.ts`.
 3. **`src/root.tsx`** is rendered as the parent route.
 4. **Global Providers** (Theme, Context) should be initialized within the component tree of to `root.tsx` (e.g. wrapping the `<Outlet />` or `<html>` depending on scope).
