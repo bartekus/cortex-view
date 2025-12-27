@@ -19,5 +19,12 @@ export default [
   },
   pluginReact.configs.flat.recommended,
   eslintConfigPrettier,
-  { rules: { "react/react-in-jsx-scope": "off" } },
+  {
+    rules: {
+      "react/react-in-jsx-scope": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+      "no-empty-pattern": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
 ];

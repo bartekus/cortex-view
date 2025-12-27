@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getStorage } from "@/lib/storage";
+import { getStorage } from "~/lib/storage";
 
 export function useStorage<T>(key: string, initialValue: T) {
   const [storedValue, setStoredValue] = useState<T>(initialValue);

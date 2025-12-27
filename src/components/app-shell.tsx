@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Link, useLocation } from "react-router";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Separator } from "@/components/ui/separator";
-import { useTheme } from "@/components/theme-provider";
+import { cn } from "~/lib/utils";
+import { Button } from "~/components/ui/button";
+import { ScrollArea } from "~/components/ui/scroll-area";
+import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet";
+import { Separator } from "~/components/ui/separator";
+import { useTheme } from "~/components/theme-provider";
 import { Menu, Moon, Sun, Monitor, PanelLeft } from "lucide-react";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -44,7 +44,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   );
 }
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "~/components/ui/dropdown-menu";
 import { useTranslation } from "react-i18next";
 import { Languages } from "lucide-react";
 
@@ -100,7 +100,7 @@ function Header({ isSidebarOpen, onToggleSidebar }: { isSidebarOpen: boolean; on
   );
 }
 
-import { VIEW_REGISTRY } from "@/lib/views";
+import { VIEW_REGISTRY } from "~/lib/views";
 
 function SidebarContent() {
   const location = useLocation();
