@@ -12,7 +12,7 @@ import { invoke } from "@tauri-apps/api/core";
  * - All backend calls are stubbed, but shaped for real MCP tool wiring.
  */
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ }: Route.MetaArgs) {
   return [
     { title: "Cortex View | Snapshot + Workspace" },
     { name: "description", content: "Tauri UI stub for Cortex MCP snapshot/workspace tools" },
@@ -81,132 +81,57 @@ function nowTs() {
   return d.toLocaleString();
 }
 
+type McpEnvelope =
+  | { ok: true; result: unknown }
+  | { ok: false; error: { code: string; message: string; details?: unknown } };
+
 export default function Home() {
   /**
    * Minimal inline "client" wrapper.
    * Replace the `stub*` bodies with real `invoke("mcp_call", { ... })` later.
    */
   const mcp = useMemo(() => {
-    // Toggle this to force stubs for now.
-    const USE_STUBS = true;
-
-    async function call<T>(command: string, args: unknown): Promise<T> {
-      // Real wiring example:
-      // return invoke<T>("cortex_mcp_call", { command, args });
-      return invoke<T>(command, args as any);
+    async function mcpCall(tool: string, args: Record<string, unknown>): Promise<McpEnvelope> {
+      return invoke<McpEnvelope>("cortex_mcp_call", { tool, args });
     }
 
-    // --- Stub helpers (deterministic-ish, for UI dev) ---
-    function stubRepoRoot() {
-      return "/repo";
-    }
-    function stubLease() {
-      // not truly deterministic, but good enough for UI stubbing
-      return `lease_${Math.random().toString(16).slice(2, 10)}`;
-    }
-    function stubWorktreeSnapshotId(tick: number) {
-      return `sha256:worktree_status_${tick.toString(16).padStart(8, "0")}`;
-    }
-    function stubSnapshotIdFrom(base: string, patch: string) {
-      // stable within this UI process; not cryptographic
-      let h = 2166136261;
-      const s = `${base}\n${patch}`;
-      for (let i = 0; i < s.length; i++) {
-        h ^= s.charCodeAt(i);
-        h = Math.imul(h, 16777619);
-      }
-      const hex = (h >>> 0).toString(16).padStart(8, "0");
-      return `sha256:snap_${hex}`;
-    }
-    function stubEntries(): Entry[] {
-      return [
-        { path: "README.md", kind: "file", size: 512 },
-        { path: "spec/", kind: "dir" },
-        { path: "spec/mcp-snapshot-workspace-v1.md", kind: "file", size: 4096 },
-        { path: "rust/", kind: "dir" },
-        { path: "rust/mcp/src/lib.rs", kind: "file", size: 2048 },
-        { path: "apps/", kind: "dir" },
-        { path: "apps/tauri-ui/src/app/routes/home.tsx", kind: "file", size: 9000 },
-      ];
-    }
-    function stubFile(path: string) {
-      return `# ${path}\n\nStub content.\n\nRendered at: ${nowTs()}\n`;
-    }
-    function stubDiff(path?: string) {
-      const p = path ? ` ${path}` : "";
-      return `diff --git a${p} b${p}\nindex 0000000..1111111 100644\n--- a${p}\n+++ b${p}\n@@ -1,3 +1,4 @@\n Stub\n+Change\n`;
+    async function snapshot_list(ctx: SnapshotContext): Promise<McpEnvelope> {
+      return mcpCall("snapshot.list", {
+        mode: ctx.mode,
+        snapshot_id: ctx.snapshot_id,
+        lease_id: ctx.lease_id,
+      });
     }
 
-    async function snapshot_list(ctx: SnapshotContext): Promise<ListResponse> {
-      if (!USE_STUBS) return call<ListResponse>("snapshot_list", { ctx });
-
-      if (ctx.mode === "worktree") {
-        return {
-          mode: "worktree",
-          repo_root: stubRepoRoot(),
-          lease_id: ctx.lease_id ?? stubLease(),
-          snapshot_id: stubWorktreeSnapshotId(Date.now()),
-          cache_hint: "until_dirty",
-          entries: stubEntries(),
-        };
-      }
-
-      // snapshot mode (immutable)
-      return {
-        mode: "snapshot",
-        repo_root: stubRepoRoot(),
-        snapshot_id: ctx.snapshot_id ?? "sha256:missing_snapshot_id",
-        cache_hint: "immutable",
-        entries: stubEntries(),
-      };
-    }
-
-    async function snapshot_file(ctx: SnapshotContext, path: string): Promise<FileResponse> {
-      if (!USE_STUBS) return call<FileResponse>("snapshot_file", { ctx, path });
-
-      return {
-        ...ctx,
-        repo_root: stubRepoRoot(),
-        cache_hint: ctx.mode === "worktree" ? "until_dirty" : "immutable",
+    async function snapshot_file(ctx: SnapshotContext, path: string): Promise<McpEnvelope> {
+      return mcpCall("snapshot.file", {
+        mode: ctx.mode,
+        snapshot_id: ctx.snapshot_id,
+        lease_id: ctx.lease_id,
         path,
-        content: stubFile(path),
-      };
+      });
     }
 
-    async function snapshot_diff(ctx: SnapshotContext, args: { path?: string; from_snapshot_id?: string }): Promise<DiffResponse> {
-      if (!USE_STUBS) return call<DiffResponse>("snapshot_diff", { ctx, ...args });
-
-      return {
-        ...ctx,
-        repo_root: stubRepoRoot(),
-        cache_hint: ctx.mode === "worktree" ? "until_dirty" : "immutable",
+    async function snapshot_diff(
+      ctx: SnapshotContext,
+      args: { path?: string; from_snapshot_id?: string }
+    ): Promise<McpEnvelope> {
+      return mcpCall("snapshot.diff", {
+        mode: ctx.mode,
+        snapshot_id: ctx.snapshot_id,
+        lease_id: ctx.lease_id,
         path: args.path,
-        diff: stubDiff(args.path),
-      };
+        from_snapshot_id: args.from_snapshot_id,
+      });
     }
 
-    async function workspace_apply_patch(ctx: SnapshotContext, input: PatchInput): Promise<ApplyPatchResponse> {
-      if (!USE_STUBS) return call<ApplyPatchResponse>("workspace_apply_patch", { ctx, input });
-
-      if (ctx.mode === "worktree") {
-        return {
-          mode: "worktree",
-          repo_root: stubRepoRoot(),
-          applied: true,
-          lease_id: stubLease(),
-          snapshot_id: stubWorktreeSnapshotId(Date.now()),
-          cache_hint: "until_dirty",
-        };
-      }
-
-      const base = input.base_snapshot_id ?? ctx.snapshot_id ?? "sha256:missing_base";
-      return {
-        mode: "snapshot",
-        repo_root: stubRepoRoot(),
-        applied: true,
-        snapshot_id: stubSnapshotIdFrom(base, input.patch),
-        cache_hint: "immutable",
-      };
+    async function workspace_apply_patch(ctx: SnapshotContext, input: PatchInput): Promise<McpEnvelope> {
+      return mcpCall("workspace.apply_patch", {
+        mode: ctx.mode,
+        snapshot_id: ctx.snapshot_id,
+        lease_id: ctx.lease_id,
+        patch: input.patch,
+      });
     }
 
     return { snapshot_list, snapshot_file, snapshot_diff, workspace_apply_patch };
@@ -274,6 +199,22 @@ export default function Home() {
     if (res.lease_id) setLeaseId(res.lease_id);
   }
 
+  function handleMcpEnvelope(env: McpEnvelope, contextMsg?: string) {
+    if (env.ok) return { ok: true as const, result: env.result };
+
+    const code = env.error.code;
+    const msg = contextMsg ? `${contextMsg}: ${code}: ${env.error.message}` : `${code}: ${env.error.message}`;
+
+    if (code === "STALE_LEASE") {
+      setLeaseId("");
+      pushToast("warn", "Stale lease. Refresh list to obtain a new lease.");
+      return { ok: false as const };
+    }
+
+    pushToast("err", msg);
+    return { ok: false as const };
+  }
+
   async function refreshList() {
     setBusy(true);
     setDiffText("");
@@ -281,7 +222,11 @@ export default function Home() {
     setSelectedPath("");
     try {
       const ctx = currentCtx();
-      const res = await mcp.snapshot_list(ctx);
+      const env = await mcp.snapshot_list(ctx);
+      const handled = handleMcpEnvelope(env, "snapshot.list");
+      if (!handled.ok) return;
+
+      const res = handled.result as ListResponse;
       setCtxFrom(res);
       setEntries(res.entries);
       pushToast("ok", `Listed ${res.entries.length} entries (${res.mode}, cache: ${res.cache_hint ?? "?"}).`);
@@ -296,7 +241,11 @@ export default function Home() {
     setBusy(true);
     try {
       const ctx = currentCtx();
-      const res = await mcp.snapshot_file(ctx, path);
+      const env = await mcp.snapshot_file(ctx, path);
+      const handled = handleMcpEnvelope(env, "snapshot.file");
+      if (!handled.ok) return;
+
+      const res = handled.result as FileResponse;
       setCtxFrom(res);
       setSelectedPath(path);
       setFileContent(res.content);
@@ -312,10 +261,14 @@ export default function Home() {
     setBusy(true);
     try {
       const ctx = currentCtx();
-      const res = await mcp.snapshot_diff(ctx, {
+      const env = await mcp.snapshot_diff(ctx, {
         path: selectedPath || undefined,
         from_snapshot_id: undefined,
       });
+      const handled = handleMcpEnvelope(env, "snapshot.diff");
+      if (!handled.ok) return;
+
+      const res = handled.result as DiffResponse;
       setCtxFrom(res);
       setDiffText(res.diff);
       pushToast("ok", `Diff generated${selectedPath ? ` for ${selectedPath}` : ""}`);
@@ -330,7 +283,11 @@ export default function Home() {
     setBusy(true);
     try {
       const ctx: SnapshotContext = { mode: "worktree", lease_id: leaseId || undefined, snapshot_id: snapshotId || undefined };
-      const res = await mcp.workspace_apply_patch(ctx, { patch: patchText });
+      const env = await mcp.workspace_apply_patch(ctx, { patch: patchText });
+      const handled = handleMcpEnvelope(env, "workspace.apply_patch(worktree)");
+      if (!handled.ok) return;
+
+      const res = handled.result as ApplyPatchResponse;
       setCtxFrom(res);
       pushToast("ok", `Applied patch to worktree. New lease: ${shortId(res.lease_id)}`);
       // Worktree changed, refresh list for the new "version tag"
@@ -351,7 +308,11 @@ export default function Home() {
       }
       const base = snapshotBrowseId || snapshotId;
       const ctx: SnapshotContext = { mode: "snapshot", snapshot_id: base };
-      const res = await mcp.workspace_apply_patch(ctx, { patch: patchText, base_snapshot_id: base });
+      const env = await mcp.workspace_apply_patch(ctx, { patch: patchText, base_snapshot_id: base });
+      const handled = handleMcpEnvelope(env, "workspace.apply_patch(snapshot)");
+      if (!handled.ok) return;
+
+      const res = handled.result as ApplyPatchResponse;
       setCtxFrom(res);
       setPreviewSnapshotId(res.snapshot_id ?? "");
       pushToast("ok", `Preview snapshot created: ${shortId(res.snapshot_id)}`);

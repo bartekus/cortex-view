@@ -1,3 +1,4 @@
+mod mcp;
 mod tray_icon;
 use tauri::Manager;
 
@@ -27,7 +28,8 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             tray_icon::process_file,
             tray_icon::tray_update_lang,
-            greet
+            greet,
+            mcp::cmd_cortex_mcp_call
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

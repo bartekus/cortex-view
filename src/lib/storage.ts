@@ -34,11 +34,13 @@ class TauriStorageAdapter implements StorageAdapter {
 
   constructor() {
     // Lazily initialize store
+    // @ts-expect-error: Constructor of class Store is private and only accessible within the class declaration
     this.store = new Store("settings.json");
   }
 
   async getItem<T>(key: string): Promise<T | null> {
-    return this.store.get<T>(key);
+    const val = await this.store.get<T>(key);
+    return val ?? null;
   }
 
   async setItem<T>(key: string, value: T): Promise<void> {

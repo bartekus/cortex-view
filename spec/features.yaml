@@ -414,7 +414,7 @@ features:
   - id: CORTEX_MCP_UI_INTEGRATION
     title: "Cortex-MCP: UI for 'Snapshot' and 'Worktree' modes"
     governance: approved
-    implementation: done
+    implementation: todo
     spec: "spec/cortex-mcp/ui-integration-guide.md"
     owner: bart
     group: 'cortex-mcp'
