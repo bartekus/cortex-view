@@ -85,13 +85,15 @@ type McpEnvelope =
   | { ok: true; result: unknown }
   | { ok: false; error: { code: string; message: string; details?: unknown } };
 
+type McpToolName = "snapshot.list" | "snapshot.file" | "snapshot.diff" | "workspace.apply_patch";
+
 export default function Home() {
   /**
    * Minimal inline "client" wrapper.
    * Replace the `stub*` bodies with real `invoke("mcp_call", { ... })` later.
    */
   const mcp = useMemo(() => {
-    async function mcpCall(tool: string, args: Record<string, unknown>): Promise<McpEnvelope> {
+    async function mcpCall(tool: McpToolName, args: Record<string, unknown>): Promise<McpEnvelope> {
       return invoke<McpEnvelope>("cortex_mcp_call", { tool, args });
     }
 
@@ -231,7 +233,7 @@ export default function Home() {
       setEntries(res.entries);
       pushToast("ok", `Listed ${res.entries.length} entries (${res.mode}, cache: ${res.cache_hint ?? "?"}).`);
     } catch (e: any) {
-      pushToast("err", `snapshot.list failed: ${e?.message ?? String(e)}`);
+      pushToast("err", `Transport error: ${e?.message ?? String(e)}`);
     } finally {
       setBusy(false);
     }
@@ -251,7 +253,7 @@ export default function Home() {
       setFileContent(res.content);
       pushToast("ok", `Opened ${path}`);
     } catch (e: any) {
-      pushToast("err", `snapshot.file failed: ${e?.message ?? String(e)}`);
+      pushToast("err", `Transport error: ${e?.message ?? String(e)}`);
     } finally {
       setBusy(false);
     }
@@ -273,7 +275,7 @@ export default function Home() {
       setDiffText(res.diff);
       pushToast("ok", `Diff generated${selectedPath ? ` for ${selectedPath}` : ""}`);
     } catch (e: any) {
-      pushToast("err", `snapshot.diff failed: ${e?.message ?? String(e)}`);
+      pushToast("err", `Transport error: ${e?.message ?? String(e)}`);
     } finally {
       setBusy(false);
     }
@@ -293,7 +295,7 @@ export default function Home() {
       // Worktree changed, refresh list for the new "version tag"
       await refreshList();
     } catch (e: any) {
-      pushToast("err", `workspace.apply_patch(worktree) failed: ${e?.message ?? String(e)}`);
+      pushToast("err", `Transport error: ${e?.message ?? String(e)}`);
     } finally {
       setBusy(false);
     }
@@ -317,7 +319,7 @@ export default function Home() {
       setPreviewSnapshotId(res.snapshot_id ?? "");
       pushToast("ok", `Preview snapshot created: ${shortId(res.snapshot_id)}`);
     } catch (e: any) {
-      pushToast("err", `workspace.apply_patch(snapshot) failed: ${e?.message ?? String(e)}`);
+      pushToast("err", `Transport error: ${e?.message ?? String(e)}`);
     } finally {
       setBusy(false);
     }
