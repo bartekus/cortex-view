@@ -1,0 +1,15 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "desktop",
+  "description": "Capability for the desktop environment",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "opener:default",
+    "log:default",
+    "store:default",
+    "window-state:default",
+    "updater:default",
+    "fs:default"
+  ]
+}
