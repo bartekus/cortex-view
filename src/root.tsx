@@ -1,7 +1,7 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useRouteError } from "react-router";
 
 import type { Route } from "./+types/root";
-import "./app.css";
+import "./index.css";
 import "./translations/i18n";
 import { ThemeProvider } from "./components/theme-provider";
 import { AppShell } from "./components/app-shell";

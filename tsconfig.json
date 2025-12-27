@@ -1,6 +1,5 @@
 {
   "include": ["src/**/*", "**/.server/**/*", "**/.client/**/*", ".react-router/types/**/*"],
-  "exclude": ["src/components/ui"],
   "compilerOptions": {
     "target": "ES2022",
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
